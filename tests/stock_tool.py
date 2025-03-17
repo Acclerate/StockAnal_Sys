@@ -11,10 +11,72 @@ from enum import Enum
 # 在文件开头添加以下导入
 import ctypes
 
+CACHE_TTL = 120
+
+# 修改缓存装饰器为带超时功能的版本（替换第94行的@lru_cache）
+from cachetools import cached, TTLCache
+stock_cache = TTLCache(maxsize=256, ttl=CACHE_TTL)
+
 # 在常量配置区域添加
 WMICON_NOTIFY = 0x00000010  # 通知图标标志
 NIIF_INFO = 0x00000001      # 信息类型图标
+# 在常量配置区域添加交易时间配置（约第30行后）
+TRADING_HOURS = {
+    "morning_open": (9, 30),
+    "morning_close": (11, 30),
+    "afternoon_open": (13, 0),
+    "afternoon_close": (15, 0)
+}
 
+
+def is_trading_time() -> bool:
+    """判断当前是否处于A股交易时间"""
+    now = time.localtime()
+    weekday = now.tm_wday  # 周一(0) 到 周五(4)，周六(5)，周日(6)
+
+    # 周末不交易
+    if weekday >= 5:
+        return False
+
+    current_hour = now.tm_hour
+    current_min = now.tm_min
+
+    # 上午交易时段 9:30-11:30
+    if (current_hour == 9 and current_min >= 30) or \
+            (10 <= current_hour < 11) or \
+            (current_hour == 11 and current_min <= 30):
+        return True
+
+    # 下午交易时段 13:00-15:00
+    if (current_hour == 13 and current_min >= 0) or \
+            (14 <= current_hour < 15) or \
+            (current_hour == 15 and current_min == 0):
+        return True
+
+    return False
+
+
+def get_next_check_interval() -> float:
+    """计算到下一个交易时段需要等待的秒数"""
+    now = time.localtime()
+    next_check = 300  # 默认5分钟
+
+    current_time = (now.tm_hour, now.tm_min)
+    morning_open = TRADING_HOURS["morning_open"]
+    afternoon_open = TRADING_HOURS["afternoon_open"]
+
+    if current_time < morning_open:
+        # 早于9:30，等到9:30
+        next_check = (morning_open[0] - now.tm_hour) * 3600 + (morning_open[1] - now.tm_min) * 60
+    elif current_time >= TRADING_HOURS["afternoon_close"]:
+        # 下午收盘后，等到次日9:30
+        next_day = 86400 - (now.tm_hour * 3600 + now.tm_min * 60 + now.tm_sec)
+        next_check = next_day + morning_open[0] * 3600 + morning_open[1] * 60
+    elif TRADING_HOURS["morning_close"] < current_time < afternoon_open:
+        # 午间休市，等到13:00
+        next_check = (afternoon_open[0] - now.tm_hour) * 3600 + (afternoon_open[1] - now.tm_min) * 60
+
+    return max(60, next_check)  # 至少等待1分钟
 # 添加通知函数
 def show_windows_notification(title: str, msg: str):
     """显示Windows通知"""
@@ -86,7 +148,7 @@ def format_stock_code(stock_code: str) -> Tuple[str, MarketType]:
     return code, MarketType.A_SHANGHAI
 
 
-@lru_cache(maxsize=256)
+@cached(stock_cache)
 def get_cached_stock_data(market: MarketType) -> pd.DataFrame:
     """带市场区分的缓存数据获取"""
     try:
@@ -210,7 +272,16 @@ if __name__ == "__main__":
     ]
 
     while True:
+        if not is_trading_time():
+            wait_seconds = get_next_check_interval()
+            logging.info(f"非交易时间段，{wait_seconds // 60}分钟后重试...")
+            time.sleep(wait_seconds)
+            continue
+
         cycle_start = time.time()
+        # 在每次循环开始时清除缓存
+        stock_cache.clear()  # 强制刷新数据
+
         print(f"------------------------------------ {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())} ---------------------------------------------- \n")
         for code in test_cases:
             start_time = time.time()
@@ -235,5 +306,5 @@ if __name__ == "__main__":
 
         # 精确5分钟间隔控制
         elapsed = time.time() - cycle_start
-        if elapsed < 300:
-            time.sleep(300 - elapsed)
+        if elapsed < 180:
+            time.sleep(180 - elapsed)
