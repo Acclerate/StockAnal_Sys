@@ -1,20 +1,50 @@
+import ctypes
+import logging
 import time
+import os
+from enum import Enum
+from typing import Dict, Optional, Tuple
+
 import akshare as ak
 import pandas as pd
 import requests
-import logging
-from typing import Dict, Optional, Tuple, Union
-from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
-from functools import lru_cache
-from enum import Enum
-# 在文件开头添加以下导入
-import ctypes
-
-CACHE_TTL = 120
-
-# 修改缓存装饰器为带超时功能的版本（替换第94行的@lru_cache）
+from urllib3.util.retry import Retry
 from cachetools import cached, TTLCache
+# 配置日志系统
+def setup_logging():
+    """初始化日志配置"""
+    log_dir = "logs"
+    os.makedirs(log_dir, exist_ok=True)
+
+    # 创建每日日志文件
+    log_filename = os.path.join(log_dir, f"{time.strftime('%Y-%m-%d')}.log")
+
+    formatter = logging.Formatter(
+        fmt='%(asctime)s.%(msecs)03d - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+
+    # 文件处理器（按日生成）
+    file_handler = logging.FileHandler(log_filename, encoding='utf-8')
+    file_handler.setFormatter(formatter)
+
+    # 控制台处理器
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+
+    # 配置根日志器
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.INFO)
+    root_logger.handlers = [file_handler, console_handler]
+
+    return log_filename
+
+# 初始化日志并获取日志路径
+log_file_path = setup_logging()
+
+# 其他常量配置
+CACHE_TTL = 120
 stock_cache = TTLCache(maxsize=256, ttl=CACHE_TTL)
 
 # 在常量配置区域添加
@@ -27,6 +57,31 @@ TRADING_HOURS = {
     "afternoon_open": (13, 0),
     "afternoon_close": (15, 0)
 }
+
+# 修改日志配置部分（替换原来的logging.basicConfig）
+log_dir = "logs"  # 日志目录
+os.makedirs(log_dir, exist_ok=True)  # 自动创建日志目录
+
+# 配置日志格式和处理器
+log_formatter = logging.Formatter(
+    fmt='%(asctime)s.%(msecs)03d - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
+# 创建按日分割的日志文件处理器
+log_filename = os.path.join(log_dir, time.strftime("%Y-%m-%d.log"))
+file_handler = logging.FileHandler(log_filename, encoding='utf-8')
+file_handler.setFormatter(log_formatter)
+
+# 控制台处理器保持原有格式
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_formatter)
+
+# 获取根logger并配置
+root_logger = logging.getLogger()
+root_logger.setLevel(logging.INFO)
+root_logger.handlers = [file_handler, console_handler]  # 替换原有处理器
+
 
 
 def is_trading_time() -> bool:
@@ -264,11 +319,14 @@ def get_stock_price(stock_code: str) -> Optional[Dict]:
 
 
 if __name__ == "__main__":
+    logging.info(f"程序启动，日志文件路径：{os.path.abspath(log_file_path)}")
     test_cases = [
         "002261",  # 拓维信息
         "000977",  # 浪潮信息
         "600133",  # 东湖高新
-        "600588"  # 用友网络
+        "600588",  # 用友网络
+        "601012",  # 隆基绿能
+        "600597"  # 光明乳业
     ]
 
     while True:
@@ -282,18 +340,20 @@ if __name__ == "__main__":
         # 在每次循环开始时清除缓存
         stock_cache.clear()  # 强制刷新数据
 
-        print(f"------------------------------------ {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())} ---------------------------------------------- \n")
+        logging.info(f"------------------------------------ {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())} ---------------------------------------------- \n")
         for code in test_cases:
             start_time = time.time()
             result = get_stock_price(code)
             elapsed = time.time() - start_time
             if result:
                 current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-                print(f"[{current_time}] [{elapsed:.2f}s] {result['名称']}({result['代码']}) "
+                logging.info(f"[{current_time}] [{elapsed:.2f}s] {result['名称']}({result['代码']}) "
                       f"当前价: {result['当前价']} | 涨跌幅: {result['涨跌幅(%)']}% "
                       f"| 市场: {result['市场类型']}")
+
+
             else:
-                print(f"[{elapsed:.2f}s] 股票 {code} 数据获取失败")
+                logging.info(f"[{elapsed:.2f}s] 股票 {code} 数据获取失败")
 
             # 添加特化价格提醒
             if result['代码'] == '600133' and float(result['当前价']) >= 10.9:
@@ -304,7 +364,7 @@ if __name__ == "__main__":
                 )
             time.sleep(0.5)  # 保持原有防刷间隔
 
-        # 精确5分钟间隔控制
+        # 精确3分钟间隔控制
         elapsed = time.time() - cycle_start
         if elapsed < 180:
             time.sleep(180 - elapsed)
