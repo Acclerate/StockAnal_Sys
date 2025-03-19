@@ -58,32 +58,6 @@ TRADING_HOURS = {
     "afternoon_close": (15, 0)
 }
 
-# 修改日志配置部分（替换原来的logging.basicConfig）
-log_dir = "logs"  # 日志目录
-os.makedirs(log_dir, exist_ok=True)  # 自动创建日志目录
-
-# 配置日志格式和处理器
-log_formatter = logging.Formatter(
-    fmt='%(asctime)s.%(msecs)03d - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
-
-# 创建按日分割的日志文件处理器
-log_filename = os.path.join(log_dir, time.strftime("%Y-%m-%d.log"))
-file_handler = logging.FileHandler(log_filename, encoding='utf-8')
-file_handler.setFormatter(log_formatter)
-
-# 控制台处理器保持原有格式
-console_handler = logging.StreamHandler()
-console_handler.setFormatter(log_formatter)
-
-# 获取根logger并配置
-root_logger = logging.getLogger()
-root_logger.setLevel(logging.INFO)
-root_logger.handlers = [file_handler, console_handler]  # 替换原有处理器
-
-
-
 def is_trading_time() -> bool:
     """判断当前是否处于A股交易时间"""
     now = time.localtime()
@@ -340,7 +314,8 @@ if __name__ == "__main__":
         # 在每次循环开始时清除缓存
         stock_cache.clear()  # 强制刷新数据
 
-        logging.info(f"------------------------------------ {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())} ---------------------------------------------- \n")
+        logging.info(
+            f"------------------------------------ {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())} ---------------------------------------------- \n")
         for code in test_cases:
             start_time = time.time()
             result = get_stock_price(code)
@@ -348,8 +323,8 @@ if __name__ == "__main__":
             if result:
                 current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
                 logging.info(f"[{current_time}] [{elapsed:.2f}s] {result['名称']}({result['代码']}) "
-                      f"当前价: {result['当前价']} | 涨跌幅: {result['涨跌幅(%)']}% "
-                      f"| 市场: {result['市场类型']}")
+                             f"当前价: {result['当前价']} | 涨跌幅: {result['涨跌幅(%)']}% "
+                             f"| 市场: {result['市场类型']}")
 
 
             else:
