@@ -1,0 +1,734 @@
+2025-03-20 08:45:56.059 - INFO - 程序启动，日志文件路径：D:\privategit\Sequoia\tests\logs\2025-03-20.log
+2025-03-20 08:45:56.060 - INFO - ------------------------------------ 2025-03-20 08:45:56 ---------------------------------------------- 
+
+2025-03-20 08:45:57.370 - INFO - [2025-03-20 08:45:57] [1.31s] 拓维信息(002261) 当前价: 34.21 | 涨跌幅: -2.17% | 市场: A股
+2025-03-20 08:45:57.875 - INFO - [2025-03-20 08:45:57] [0.00s] 浪潮信息(000977) 当前价: 59.06 | 涨跌幅: -1.32% | 市场: A股
+2025-03-20 08:45:59.611 - INFO - [2025-03-20 08:45:59] [1.22s] 东湖高新(600133) 当前价: 10.07 | 涨跌幅: -1.76% | 市场: A股
+2025-03-20 08:46:00.119 - INFO - [2025-03-20 08:46:00] [0.01s] 用友网络(600588) 当前价: 16.61 | 涨跌幅: -3.09% | 市场: A股
+2025-03-20 08:46:00.630 - INFO - [2025-03-20 08:46:00] [0.00s] 隆基绿能(601012) 当前价: 17.66 | 涨跌幅: -1.34% | 市场: A股
+2025-03-20 08:46:01.145 - INFO - [2025-03-20 08:46:01] [0.00s] 光明乳业(600597) 当前价: 8.65 | 涨跌幅: -1.48% | 市场: A股
+2025-03-20 09:43:28.044 - INFO - 程序启动，日志文件路径：D:\privategit\Sequoia\tests\logs\2025-03-20.log
+2025-03-20 09:43:28.047 - INFO - ------------------------------------ 2025-03-20 09:43:28 ---------------------------------------------- 
+
+2025-03-20 09:43:37.144 - INFO - [2025-03-20 09:43:37] [9.10s] 拓维信息(002261) 当前价: 34.06 | 涨跌幅: -0.44% | 市场: A股
+2025-03-20 09:43:37.650 - INFO - [2025-03-20 09:43:37] [0.01s] 浪潮信息(000977) 当前价: 58.61 | 涨跌幅: -0.76% | 市场: A股
+2025-03-20 09:43:46.608 - INFO - [2025-03-20 09:43:46] [8.44s] 东湖高新(600133) 当前价: 9.98 | 涨跌幅: -0.89% | 市场: A股
+2025-03-20 09:43:47.118 - INFO - [2025-03-20 09:43:47] [0.00s] 用友网络(600588) 当前价: 16.38 | 涨跌幅: -1.38% | 市场: A股
+2025-03-20 09:43:47.621 - INFO - [2025-03-20 09:43:47] [0.00s] 隆基绿能(601012) 当前价: 17.5 | 涨跌幅: -0.91% | 市场: A股
+2025-03-20 09:43:48.129 - INFO - [2025-03-20 09:43:48] [0.00s] 光明乳业(600597) 当前价: 8.68 | 涨跌幅: 0.35% | 市场: A股
+2025-03-20 09:46:28.061 - INFO - ------------------------------------ 2025-03-20 09:46:28 ---------------------------------------------- 
+
+2025-03-20 09:46:28.917 - INFO - [2025-03-20 09:46:28] [0.86s] 拓维信息(002261) 当前价: 33.78 | 涨跌幅: -1.26% | 市场: A股
+2025-03-20 09:46:29.426 - INFO - [2025-03-20 09:46:29] [0.00s] 浪潮信息(000977) 当前价: 58.45 | 涨跌幅: -1.03% | 市场: A股
+2025-03-20 09:46:51.092 - ERROR - Akshare数据获取失败: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1116, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 122, in start_connection
+    raise first_exception
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\proactor_events.py", line 709, in sock_connect
+    return await self._proactor.connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 826, in _poll
+    value = callback(transferred, key, ov)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 613, in finish_connect
+    ov.getresult()
+OSError: [WinError 121] 信号灯超时时间已到
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\tests\stock_tool.py", line 185, in get_cached_stock_data
+    df = ak.stock_zh_a_spot_em()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 229, in stock_zh_a_spot_em
+    return asyncio.run(stock_zh_a_spot_em_async())
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 218, in stock_zh_a_spot_em_async
+    results = await fetch_all_pages_async(url, params)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 53, in fetch_all_pages_async
+    results = await asyncio.gather(*tasks)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 21, in fetch_single_page
+    async with session.get(url, params=params) as response:
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 703, in _request
+    conn = await self._connector.connect(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1411, in _create_direct_connection
+    raise last_exc
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1380, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1135, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+2025-03-20 09:46:52.794 - INFO - [2025-03-20 09:46:52] [22.86s] 东湖高新(600133) 当前价: 9.98 | 涨跌幅: -0.89% | 市场: sh
+2025-03-20 09:46:54.979 - INFO - [2025-03-20 09:46:54] [1.68s] 用友网络(600588) 当前价: 16.35 | 涨跌幅: -1.57% | 市场: sh
+2025-03-20 09:46:57.196 - INFO - [2025-03-20 09:46:57] [1.70s] 隆基绿能(601012) 当前价: 17.51 | 涨跌幅: -0.85% | 市场: sh
+2025-03-20 09:46:59.379 - INFO - [2025-03-20 09:46:59] [1.68s] 光明乳业(600597) 当前价: 8.67 | 涨跌幅: 0.23% | 市场: sh
+2025-03-20 09:49:28.064 - INFO - ------------------------------------ 2025-03-20 09:49:28 ---------------------------------------------- 
+
+2025-03-20 09:49:29.414 - INFO - [2025-03-20 09:49:29] [1.35s] 拓维信息(002261) 当前价: 33.84 | 涨跌幅: -1.08% | 市场: A股
+2025-03-20 09:49:29.921 - INFO - [2025-03-20 09:49:29] [0.00s] 浪潮信息(000977) 当前价: 58.27 | 涨跌幅: -1.34% | 市场: A股
+2025-03-20 09:49:31.805 - INFO - [2025-03-20 09:49:31] [1.38s] 东湖高新(600133) 当前价: 9.97 | 涨跌幅: -0.99% | 市场: A股
+2025-03-20 09:49:32.320 - INFO - [2025-03-20 09:49:32] [0.00s] 用友网络(600588) 当前价: 16.32 | 涨跌幅: -1.75% | 市场: A股
+2025-03-20 09:49:32.823 - INFO - [2025-03-20 09:49:32] [0.00s] 隆基绿能(601012) 当前价: 17.51 | 涨跌幅: -0.85% | 市场: A股
+2025-03-20 09:49:33.337 - INFO - [2025-03-20 09:49:33] [0.00s] 光明乳业(600597) 当前价: 8.7 | 涨跌幅: 0.58% | 市场: A股
+2025-03-20 09:52:28.067 - INFO - ------------------------------------ 2025-03-20 09:52:28 ---------------------------------------------- 
+
+2025-03-20 09:52:49.286 - ERROR - Akshare数据获取失败: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1116, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 122, in start_connection
+    raise first_exception
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\proactor_events.py", line 709, in sock_connect
+    return await self._proactor.connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 826, in _poll
+    value = callback(transferred, key, ov)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 613, in finish_connect
+    ov.getresult()
+OSError: [WinError 121] 信号灯超时时间已到
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\tests\stock_tool.py", line 185, in get_cached_stock_data
+    df = ak.stock_zh_a_spot_em()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 229, in stock_zh_a_spot_em
+    return asyncio.run(stock_zh_a_spot_em_async())
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 218, in stock_zh_a_spot_em_async
+    results = await fetch_all_pages_async(url, params)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 53, in fetch_all_pages_async
+    results = await asyncio.gather(*tasks)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 21, in fetch_single_page
+    async with session.get(url, params=params) as response:
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 703, in _request
+    conn = await self._connector.connect(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1411, in _create_direct_connection
+    raise last_exc
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1380, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1135, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+2025-03-20 09:52:51.094 - INFO - [2025-03-20 09:52:51] [23.03s] 拓维信息(002261) 当前价: 34.27 | 涨跌幅: 0.18% | 市场: sz
+2025-03-20 09:52:53.350 - INFO - [2025-03-20 09:52:53] [1.75s] 浪潮信息(000977) 当前价: 58.42 | 涨跌幅: -1.08% | 市场: sz
+2025-03-20 09:52:55.363 - INFO - [2025-03-20 09:52:55] [1.51s] 东湖高新(600133) 当前价: 10.01 | 涨跌幅: -0.6% | 市场: A股
+2025-03-20 09:52:55.873 - INFO - [2025-03-20 09:52:55] [0.00s] 用友网络(600588) 当前价: 16.36 | 涨跌幅: -1.51% | 市场: A股
+2025-03-20 09:52:56.381 - INFO - [2025-03-20 09:52:56] [0.00s] 隆基绿能(601012) 当前价: 17.51 | 涨跌幅: -0.85% | 市场: A股
+2025-03-20 09:52:56.897 - INFO - [2025-03-20 09:52:56] [0.01s] 光明乳业(600597) 当前价: 8.69 | 涨跌幅: 0.46% | 市场: A股
+2025-03-20 09:55:28.078 - INFO - ------------------------------------ 2025-03-20 09:55:28 ---------------------------------------------- 
+
+2025-03-20 09:55:29.658 - INFO - [2025-03-20 09:55:29] [1.58s] 拓维信息(002261) 当前价: 34.45 | 涨跌幅: 0.7% | 市场: A股
+2025-03-20 09:55:30.174 - INFO - [2025-03-20 09:55:30] [0.00s] 浪潮信息(000977) 当前价: 58.56 | 涨跌幅: -0.85% | 市场: A股
+2025-03-20 09:55:32.126 - INFO - [2025-03-20 09:55:32] [1.45s] 东湖高新(600133) 当前价: 10.03 | 涨跌幅: -0.4% | 市场: A股
+2025-03-20 09:55:32.644 - INFO - [2025-03-20 09:55:32] [0.01s] 用友网络(600588) 当前价: 16.4 | 涨跌幅: -1.26% | 市场: A股
+2025-03-20 09:55:33.161 - INFO - [2025-03-20 09:55:33] [0.00s] 隆基绿能(601012) 当前价: 17.51 | 涨跌幅: -0.85% | 市场: A股
+2025-03-20 09:55:33.671 - INFO - [2025-03-20 09:55:33] [0.01s] 光明乳业(600597) 当前价: 8.68 | 涨跌幅: 0.35% | 市场: A股
+2025-03-20 09:58:28.080 - INFO - ------------------------------------ 2025-03-20 09:58:28 ---------------------------------------------- 
+
+2025-03-20 09:58:39.843 - INFO - [2025-03-20 09:58:39] [11.76s] 拓维信息(002261) 当前价: 34.58 | 涨跌幅: 1.08% | 市场: A股
+2025-03-20 09:58:40.358 - INFO - [2025-03-20 09:58:40] [0.00s] 浪潮信息(000977) 当前价: 58.44 | 涨跌幅: -1.05% | 市场: A股
+2025-03-20 09:58:43.414 - INFO - [2025-03-20 09:58:43] [2.55s] 东湖高新(600133) 当前价: 10.05 | 涨跌幅: -0.2% | 市场: A股
+2025-03-20 09:58:43.934 - INFO - [2025-03-20 09:58:43] [0.00s] 用友网络(600588) 当前价: 16.4 | 涨跌幅: -1.26% | 市场: A股
+2025-03-20 09:58:44.439 - INFO - [2025-03-20 09:58:44] [0.00s] 隆基绿能(601012) 当前价: 17.54 | 涨跌幅: -0.68% | 市场: A股
+2025-03-20 09:58:44.958 - INFO - [2025-03-20 09:58:44] [0.01s] 光明乳业(600597) 当前价: 8.66 | 涨跌幅: 0.12% | 市场: A股
+2025-03-20 10:01:28.087 - INFO - ------------------------------------ 2025-03-20 10:01:28 ---------------------------------------------- 
+
+2025-03-20 10:01:29.888 - INFO - [2025-03-20 10:01:29] [1.80s] 拓维信息(002261) 当前价: 34.56 | 涨跌幅: 1.02% | 市场: A股
+2025-03-20 10:01:30.406 - INFO - [2025-03-20 10:01:30] [0.00s] 浪潮信息(000977) 当前价: 58.68 | 涨跌幅: -0.64% | 市场: A股
+2025-03-20 10:02:02.092 - INFO - [2025-03-20 10:02:02] [31.17s] 东湖高新(600133) 当前价: 10.03 | 涨跌幅: -0.4% | 市场: A股
+2025-03-20 10:02:02.610 - INFO - [2025-03-20 10:02:02] [0.00s] 用友网络(600588) 当前价: 16.53 | 涨跌幅: -0.48% | 市场: A股
+2025-03-20 10:02:03.128 - INFO - [2025-03-20 10:02:03] [0.01s] 隆基绿能(601012) 当前价: 17.58 | 涨跌幅: -0.45% | 市场: A股
+2025-03-20 10:02:03.647 - INFO - [2025-03-20 10:02:03] [0.00s] 光明乳业(600597) 当前价: 8.66 | 涨跌幅: 0.12% | 市场: A股
+2025-03-20 10:04:28.090 - INFO - ------------------------------------ 2025-03-20 10:04:28 ---------------------------------------------- 
+
+2025-03-20 10:04:31.474 - INFO - [2025-03-20 10:04:31] [3.38s] 拓维信息(002261) 当前价: 34.74 | 涨跌幅: 1.55% | 市场: A股
+2025-03-20 10:04:31.993 - INFO - [2025-03-20 10:04:31] [0.01s] 浪潮信息(000977) 当前价: 58.79 | 涨跌幅: -0.46% | 市场: A股
+2025-03-20 10:04:35.288 - INFO - [2025-03-20 10:04:35] [2.78s] 东湖高新(600133) 当前价: 10.1 | 涨跌幅: 0.3% | 市场: A股
+2025-03-20 10:04:35.793 - INFO - [2025-03-20 10:04:35] [0.00s] 用友网络(600588) 当前价: 16.58 | 涨跌幅: -0.18% | 市场: A股
+2025-03-20 10:04:36.320 - INFO - [2025-03-20 10:04:36] [0.01s] 隆基绿能(601012) 当前价: 17.61 | 涨跌幅: -0.28% | 市场: A股
+2025-03-20 10:04:36.840 - INFO - [2025-03-20 10:04:36] [0.01s] 光明乳业(600597) 当前价: 8.67 | 涨跌幅: 0.23% | 市场: A股
+2025-03-20 10:07:28.104 - INFO - ------------------------------------ 2025-03-20 10:07:28 ---------------------------------------------- 
+
+2025-03-20 10:07:49.382 - ERROR - Akshare数据获取失败: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1116, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 122, in start_connection
+    raise first_exception
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\proactor_events.py", line 709, in sock_connect
+    return await self._proactor.connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 826, in _poll
+    value = callback(transferred, key, ov)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 613, in finish_connect
+    ov.getresult()
+OSError: [WinError 121] 信号灯超时时间已到
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\tests\stock_tool.py", line 185, in get_cached_stock_data
+    df = ak.stock_zh_a_spot_em()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 229, in stock_zh_a_spot_em
+    return asyncio.run(stock_zh_a_spot_em_async())
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 218, in stock_zh_a_spot_em_async
+    results = await fetch_all_pages_async(url, params)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 53, in fetch_all_pages_async
+    results = await asyncio.gather(*tasks)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 21, in fetch_single_page
+    async with session.get(url, params=params) as response:
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 703, in _request
+    conn = await self._connector.connect(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1411, in _create_direct_connection
+    raise last_exc
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1380, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1135, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+2025-03-20 10:07:51.072 - INFO - [2025-03-20 10:07:51] [22.97s] 拓维信息(002261) 当前价: 35.14 | 涨跌幅: 2.72% | 市场: sz
+2025-03-20 10:07:53.253 - INFO - [2025-03-20 10:07:53] [1.67s] 浪潮信息(000977) 当前价: 59.27 | 涨跌幅: 0.36% | 市场: sz
+2025-03-20 10:07:54.925 - INFO - [2025-03-20 10:07:54] [1.17s] 东湖高新(600133) 当前价: 10.12 | 涨跌幅: 0.5% | 市场: A股
+2025-03-20 10:07:55.428 - INFO - [2025-03-20 10:07:55] [0.00s] 用友网络(600588) 当前价: 16.65 | 涨跌幅: 0.24% | 市场: A股
+2025-03-20 10:07:55.938 - INFO - [2025-03-20 10:07:55] [0.01s] 隆基绿能(601012) 当前价: 17.63 | 涨跌幅: -0.17% | 市场: A股
+2025-03-20 10:07:56.448 - INFO - [2025-03-20 10:07:56] [0.01s] 光明乳业(600597) 当前价: 8.67 | 涨跌幅: 0.23% | 市场: A股
+2025-03-20 10:10:28.107 - INFO - ------------------------------------ 2025-03-20 10:10:28 ---------------------------------------------- 
+
+2025-03-20 10:10:30.079 - INFO - [2025-03-20 10:10:30] [1.97s] 拓维信息(002261) 当前价: 36.09 | 涨跌幅: 5.5% | 市场: A股
+2025-03-20 10:10:30.603 - INFO - [2025-03-20 10:10:30] [0.01s] 浪潮信息(000977) 当前价: 59.19 | 涨跌幅: 0.22% | 市场: A股
+2025-03-20 10:10:32.861 - INFO - [2025-03-20 10:10:32] [1.74s] 东湖高新(600133) 当前价: 10.09 | 涨跌幅: 0.2% | 市场: A股
+2025-03-20 10:10:33.377 - INFO - [2025-03-20 10:10:33] [0.00s] 用友网络(600588) 当前价: 16.68 | 涨跌幅: 0.42% | 市场: A股
+2025-03-20 10:10:33.887 - INFO - [2025-03-20 10:10:33] [0.00s] 隆基绿能(601012) 当前价: 17.64 | 涨跌幅: -0.11% | 市场: A股
+2025-03-20 10:10:34.400 - INFO - [2025-03-20 10:10:34] [0.00s] 光明乳业(600597) 当前价: 8.66 | 涨跌幅: 0.12% | 市场: A股
+2025-03-20 10:13:28.113 - INFO - ------------------------------------ 2025-03-20 10:13:28 ---------------------------------------------- 
+
+2025-03-20 10:13:29.925 - INFO - [2025-03-20 10:13:29] [1.81s] 拓维信息(002261) 当前价: 36.3 | 涨跌幅: 6.11% | 市场: A股
+2025-03-20 10:13:30.448 - INFO - [2025-03-20 10:13:30] [0.01s] 浪潮信息(000977) 当前价: 59.27 | 涨跌幅: 0.36% | 市场: A股
+2025-03-20 10:13:32.505 - INFO - [2025-03-20 10:13:32] [1.55s] 东湖高新(600133) 当前价: 10.1 | 涨跌幅: 0.3% | 市场: A股
+2025-03-20 10:13:33.015 - INFO - [2025-03-20 10:13:33] [0.01s] 用友网络(600588) 当前价: 16.87 | 涨跌幅: 1.57% | 市场: A股
+2025-03-20 10:13:33.525 - INFO - [2025-03-20 10:13:33] [0.00s] 隆基绿能(601012) 当前价: 17.67 | 涨跌幅: 0.06% | 市场: A股
+2025-03-20 10:13:34.035 - INFO - [2025-03-20 10:13:34] [0.00s] 光明乳业(600597) 当前价: 8.65 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 10:16:28.117 - INFO - ------------------------------------ 2025-03-20 10:16:28 ---------------------------------------------- 
+
+2025-03-20 10:16:29.744 - INFO - [2025-03-20 10:16:29] [1.63s] 拓维信息(002261) 当前价: 36.28 | 涨跌幅: 6.05% | 市场: A股
+2025-03-20 10:16:30.258 - INFO - [2025-03-20 10:16:30] [0.00s] 浪潮信息(000977) 当前价: 59.27 | 涨跌幅: 0.36% | 市场: A股
+2025-03-20 10:16:32.352 - INFO - [2025-03-20 10:16:32] [1.59s] 东湖高新(600133) 当前价: 10.11 | 涨跌幅: 0.4% | 市场: A股
+2025-03-20 10:16:32.870 - INFO - [2025-03-20 10:16:32] [0.01s] 用友网络(600588) 当前价: 16.96 | 涨跌幅: 2.11% | 市场: A股
+2025-03-20 10:16:33.381 - INFO - [2025-03-20 10:16:33] [0.01s] 隆基绿能(601012) 当前价: 17.66 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 10:16:33.890 - INFO - [2025-03-20 10:16:33] [0.01s] 光明乳业(600597) 当前价: 8.64 | 涨跌幅: -0.12% | 市场: A股
+2025-03-20 10:19:28.118 - INFO - ------------------------------------ 2025-03-20 10:19:28 ---------------------------------------------- 
+
+2025-03-20 10:19:31.496 - INFO - [2025-03-20 10:19:31] [3.38s] 拓维信息(002261) 当前价: 36.25 | 涨跌幅: 5.96% | 市场: A股
+2025-03-20 10:19:32.008 - INFO - [2025-03-20 10:19:32] [0.01s] 浪潮信息(000977) 当前价: 59.26 | 涨跌幅: 0.34% | 市场: A股
+2025-03-20 10:19:34.887 - INFO - [2025-03-20 10:19:34] [2.36s] 东湖高新(600133) 当前价: 10.11 | 涨跌幅: 0.4% | 市场: A股
+2025-03-20 10:19:35.404 - INFO - [2025-03-20 10:19:35] [0.01s] 用友网络(600588) 当前价: 16.95 | 涨跌幅: 2.05% | 市场: A股
+2025-03-20 10:19:35.918 - INFO - [2025-03-20 10:19:35] [0.01s] 隆基绿能(601012) 当前价: 17.63 | 涨跌幅: -0.17% | 市场: A股
+2025-03-20 10:19:36.436 - INFO - [2025-03-20 10:19:36] [0.01s] 光明乳业(600597) 当前价: 8.65 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 10:22:28.128 - INFO - ------------------------------------ 2025-03-20 10:22:28 ---------------------------------------------- 
+
+2025-03-20 10:22:32.589 - INFO - [2025-03-20 10:22:32] [4.46s] 拓维信息(002261) 当前价: 36.0 | 涨跌幅: 5.23% | 市场: A股
+2025-03-20 10:22:33.103 - INFO - [2025-03-20 10:22:33] [0.01s] 浪潮信息(000977) 当前价: 59.15 | 涨跌幅: 0.15% | 市场: A股
+2025-03-20 10:22:55.475 - ERROR - Akshare数据获取失败: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1116, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 122, in start_connection
+    raise first_exception
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\proactor_events.py", line 709, in sock_connect
+    return await self._proactor.connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 826, in _poll
+    value = callback(transferred, key, ov)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 613, in finish_connect
+    ov.getresult()
+OSError: [WinError 121] 信号灯超时时间已到
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\tests\stock_tool.py", line 185, in get_cached_stock_data
+    df = ak.stock_zh_a_spot_em()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 229, in stock_zh_a_spot_em
+    return asyncio.run(stock_zh_a_spot_em_async())
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 218, in stock_zh_a_spot_em_async
+    results = await fetch_all_pages_async(url, params)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 53, in fetch_all_pages_async
+    results = await asyncio.gather(*tasks)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 21, in fetch_single_page
+    async with session.get(url, params=params) as response:
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 703, in _request
+    conn = await self._connector.connect(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1411, in _create_direct_connection
+    raise last_exc
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1380, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1135, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+2025-03-20 10:22:57.519 - INFO - [2025-03-20 10:22:57] [23.91s] 东湖高新(600133) 当前价: 10.1 | 涨跌幅: 0.3% | 市场: sh
+2025-03-20 10:22:59.971 - INFO - [2025-03-20 10:22:59] [1.95s] 用友网络(600588) 当前价: 16.89 | 涨跌幅: 1.69% | 市场: sh
+2025-03-20 10:23:03.091 - INFO - [2025-03-20 10:23:03] [2.61s] 隆基绿能(601012) 当前价: 17.59 | 涨跌幅: -0.4% | 市场: sh
+2025-03-20 10:23:05.398 - INFO - [2025-03-20 10:23:05] [1.79s] 光明乳业(600597) 当前价: 8.64 | 涨跌幅: -0.12% | 市场: sh
+2025-03-20 10:25:28.136 - INFO - ------------------------------------ 2025-03-20 10:25:28 ---------------------------------------------- 
+
+2025-03-20 10:25:32.593 - INFO - [2025-03-20 10:25:32] [4.46s] 拓维信息(002261) 当前价: 36.18 | 涨跌幅: 5.76% | 市场: A股
+2025-03-20 10:25:33.109 - INFO - [2025-03-20 10:25:33] [0.00s] 浪潮信息(000977) 当前价: 59.06 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 10:25:39.722 - INFO - [2025-03-20 10:25:39] [6.11s] 东湖高新(600133) 当前价: 10.11 | 涨跌幅: 0.4% | 市场: A股
+2025-03-20 10:25:40.225 - INFO - [2025-03-20 10:25:40] [0.00s] 用友网络(600588) 当前价: 16.84 | 涨跌幅: 1.38% | 市场: A股
+2025-03-20 10:25:40.742 - INFO - [2025-03-20 10:25:40] [0.01s] 隆基绿能(601012) 当前价: 17.58 | 涨跌幅: -0.45% | 市场: A股
+2025-03-20 10:25:41.263 - INFO - [2025-03-20 10:25:41] [0.01s] 光明乳业(600597) 当前价: 8.63 | 涨跌幅: -0.23% | 市场: A股
+2025-03-20 10:28:28.143 - INFO - ------------------------------------ 2025-03-20 10:28:28 ---------------------------------------------- 
+
+2025-03-20 10:28:31.734 - INFO - [2025-03-20 10:28:31] [3.59s] 拓维信息(002261) 当前价: 35.99 | 涨跌幅: 5.2% | 市场: A股
+2025-03-20 10:28:32.241 - INFO - [2025-03-20 10:28:32] [0.00s] 浪潮信息(000977) 当前价: 59.14 | 涨跌幅: 0.14% | 市场: A股
+2025-03-20 10:28:34.795 - INFO - [2025-03-20 10:28:34] [2.04s] 东湖高新(600133) 当前价: 10.13 | 涨跌幅: 0.6% | 市场: A股
+2025-03-20 10:28:35.318 - INFO - [2025-03-20 10:28:35] [0.01s] 用友网络(600588) 当前价: 16.84 | 涨跌幅: 1.38% | 市场: A股
+2025-03-20 10:28:35.836 - INFO - [2025-03-20 10:28:35] [0.01s] 隆基绿能(601012) 当前价: 17.58 | 涨跌幅: -0.45% | 市场: A股
+2025-03-20 10:28:36.352 - INFO - [2025-03-20 10:28:36] [0.00s] 光明乳业(600597) 当前价: 8.65 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 10:31:28.154 - INFO - ------------------------------------ 2025-03-20 10:31:28 ---------------------------------------------- 
+
+2025-03-20 10:31:49.439 - ERROR - Akshare数据获取失败: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1116, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 122, in start_connection
+    raise first_exception
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohappyeyeballs\impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\proactor_events.py", line 709, in sock_connect
+    return await self._proactor.connect(sock, address)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 826, in _poll
+    value = callback(transferred, key, ov)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\windows_events.py", line 613, in finish_connect
+    ov.getresult()
+OSError: [WinError 121] 信号灯超时时间已到
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\privategit\Sequoia\tests\stock_tool.py", line 185, in get_cached_stock_data
+    df = ak.stock_zh_a_spot_em()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 229, in stock_zh_a_spot_em
+    return asyncio.run(stock_zh_a_spot_em_async())
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "D:\tools\pyenvwin\pyenv-win\versions\3.10.11\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 218, in stock_zh_a_spot_em_async
+    results = await fetch_all_pages_async(url, params)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 53, in fetch_all_pages_async
+    results = await asyncio.gather(*tasks)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 21, in fetch_single_page
+    async with session.get(url, params=params) as response:
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\client.py", line 703, in _request
+    conn = await self._connector.connect(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1411, in _create_direct_connection
+    raise last_exc
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1380, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "D:\privategit\Sequoia\venv\lib\site-packages\aiohttp\connector.py", line 1135, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host 82.push2.eastmoney.com:443 ssl:default [信号灯超时时间已到]
+2025-03-20 10:31:51.494 - INFO - [2025-03-20 10:31:51] [23.34s] 拓维信息(002261) 当前价: 35.89 | 涨跌幅: 4.91% | 市场: sz
+2025-03-20 10:31:54.157 - INFO - [2025-03-20 10:31:54] [2.16s] 浪潮信息(000977) 当前价: 59.1 | 涨跌幅: 0.07% | 市场: sz
+2025-03-20 10:31:58.137 - INFO - [2025-03-20 10:31:58] [3.47s] 东湖高新(600133) 当前价: 10.11 | 涨跌幅: 0.4% | 市场: A股
+2025-03-20 10:31:58.647 - INFO - [2025-03-20 10:31:58] [0.01s] 用友网络(600588) 当前价: 16.8 | 涨跌幅: 1.14% | 市场: A股
+2025-03-20 10:31:59.160 - INFO - [2025-03-20 10:31:59] [0.01s] 隆基绿能(601012) 当前价: 17.6 | 涨跌幅: -0.34% | 市场: A股
+2025-03-20 10:31:59.670 - INFO - [2025-03-20 10:31:59] [0.01s] 光明乳业(600597) 当前价: 8.65 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 10:34:28.168 - INFO - ------------------------------------ 2025-03-20 10:34:28 ---------------------------------------------- 
+
+2025-03-20 10:34:30.327 - INFO - [2025-03-20 10:34:30] [2.16s] 拓维信息(002261) 当前价: 35.92 | 涨跌幅: 5.0% | 市场: A股
+2025-03-20 10:34:30.831 - INFO - [2025-03-20 10:34:30] [0.00s] 浪潮信息(000977) 当前价: 59.13 | 涨跌幅: 0.12% | 市场: A股
+2025-03-20 10:34:33.015 - INFO - [2025-03-20 10:34:33] [1.68s] 东湖高新(600133) 当前价: 10.1 | 涨跌幅: 0.3% | 市场: A股
+2025-03-20 10:34:33.530 - INFO - [2025-03-20 10:34:33] [0.00s] 用友网络(600588) 当前价: 16.83 | 涨跌幅: 1.32% | 市场: A股
+2025-03-20 10:34:34.039 - INFO - [2025-03-20 10:34:34] [0.00s] 隆基绿能(601012) 当前价: 17.64 | 涨跌幅: -0.11% | 市场: A股
+2025-03-20 10:34:34.548 - INFO - [2025-03-20 10:34:34] [0.01s] 光明乳业(600597) 当前价: 8.67 | 涨跌幅: 0.23% | 市场: A股
+2025-03-20 10:37:28.170 - INFO - ------------------------------------ 2025-03-20 10:37:28 ---------------------------------------------- 
+
+2025-03-20 10:37:29.760 - INFO - [2025-03-20 10:37:29] [1.59s] 拓维信息(002261) 当前价: 35.91 | 涨跌幅: 4.97% | 市场: A股
+2025-03-20 10:37:30.274 - INFO - [2025-03-20 10:37:30] [0.01s] 浪潮信息(000977) 当前价: 59.16 | 涨跌幅: 0.17% | 市场: A股
+2025-03-20 10:37:32.335 - INFO - [2025-03-20 10:37:32] [1.55s] 东湖高新(600133) 当前价: 10.11 | 涨跌幅: 0.4% | 市场: A股
+2025-03-20 10:37:32.851 - INFO - [2025-03-20 10:37:32] [0.01s] 用友网络(600588) 当前价: 16.81 | 涨跌幅: 1.2% | 市场: A股
+2025-03-20 10:37:33.364 - INFO - [2025-03-20 10:37:33] [0.00s] 隆基绿能(601012) 当前价: 17.61 | 涨跌幅: -0.28% | 市场: A股
+2025-03-20 10:37:33.869 - INFO - [2025-03-20 10:37:33] [0.00s] 光明乳业(600597) 当前价: 8.67 | 涨跌幅: 0.23% | 市场: A股
+2025-03-20 13:57:48.871 - INFO - 程序启动，日志文件路径：D:\privategit\github\Sequoia\tests\logs\2025-03-20.log
+2025-03-20 13:57:48.872 - INFO - ------------------------------------ 2025-03-20 13:57:48 ---------------------------------------------- 
+
+2025-03-20 13:57:49.844 - INFO - [2025-03-20 13:57:49] [0.97s] 拓维信息(002261) 当前价: 35.31 | 涨跌幅: 3.22% | 市场: A股
+2025-03-20 13:57:50.361 - INFO - [2025-03-20 13:57:50] [0.01s] 浪潮信息(000977) 当前价: 58.62 | 涨跌幅: -0.75% | 市场: A股
+2025-03-20 13:57:52.028 - INFO - [2025-03-20 13:57:52] [1.16s] 东湖高新(600133) 当前价: 10.07 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 13:57:52.532 - INFO - [2025-03-20 13:57:52] [0.00s] 用友网络(600588) 当前价: 16.62 | 涨跌幅: 0.06% | 市场: A股
+2025-03-20 13:57:53.042 - INFO - [2025-03-20 13:57:53] [0.00s] 隆基绿能(601012) 当前价: 17.46 | 涨跌幅: -1.13% | 市场: A股
+2025-03-20 13:57:53.560 - INFO - [2025-03-20 13:57:53] [0.00s] 光明乳业(600597) 当前价: 8.6 | 涨跌幅: -0.58% | 市场: A股
+2025-03-20 14:00:48.888 - INFO - ------------------------------------ 2025-03-20 14:00:48 ---------------------------------------------- 
+
+2025-03-20 14:00:50.066 - INFO - [2025-03-20 14:00:50] [1.18s] 拓维信息(002261) 当前价: 35.28 | 涨跌幅: 3.13% | 市场: A股
+2025-03-20 14:00:50.580 - INFO - [2025-03-20 14:00:50] [0.00s] 浪潮信息(000977) 当前价: 58.54 | 涨跌幅: -0.88% | 市场: A股
+2025-03-20 14:00:52.371 - INFO - [2025-03-20 14:00:52] [1.28s] 东湖高新(600133) 当前价: 10.07 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 14:00:52.887 - INFO - [2025-03-20 14:00:52] [0.01s] 用友网络(600588) 当前价: 16.61 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 14:00:53.396 - INFO - [2025-03-20 14:00:53] [0.00s] 隆基绿能(601012) 当前价: 17.47 | 涨跌幅: -1.08% | 市场: A股
+2025-03-20 14:00:53.906 - INFO - [2025-03-20 14:00:53] [0.00s] 光明乳业(600597) 当前价: 8.61 | 涨跌幅: -0.46% | 市场: A股
+2025-03-20 14:03:48.895 - INFO - ------------------------------------ 2025-03-20 14:03:48 ---------------------------------------------- 
+
+2025-03-20 14:03:50.109 - INFO - [2025-03-20 14:03:50] [1.21s] 拓维信息(002261) 当前价: 35.22 | 涨跌幅: 2.95% | 市场: A股
+2025-03-20 14:03:50.628 - INFO - [2025-03-20 14:03:50] [0.01s] 浪潮信息(000977) 当前价: 58.42 | 涨跌幅: -1.08% | 市场: A股
+2025-03-20 14:03:52.619 - INFO - [2025-03-20 14:03:52] [1.49s] 东湖高新(600133) 当前价: 10.04 | 涨跌幅: -0.3% | 市场: A股
+2025-03-20 14:03:53.132 - INFO - [2025-03-20 14:03:53] [0.00s] 用友网络(600588) 当前价: 16.59 | 涨跌幅: -0.12% | 市场: A股
+2025-03-20 14:03:53.639 - INFO - [2025-03-20 14:03:53] [0.00s] 隆基绿能(601012) 当前价: 17.45 | 涨跌幅: -1.19% | 市场: A股
+2025-03-20 14:03:54.148 - INFO - [2025-03-20 14:03:54] [0.00s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 14:06:48.904 - INFO - ------------------------------------ 2025-03-20 14:06:48 ---------------------------------------------- 
+
+2025-03-20 14:06:49.623 - INFO - [2025-03-20 14:06:49] [0.72s] 拓维信息(002261) 当前价: 35.28 | 涨跌幅: 3.13% | 市场: A股
+2025-03-20 14:06:50.132 - INFO - [2025-03-20 14:06:50] [0.00s] 浪潮信息(000977) 当前价: 58.48 | 涨跌幅: -0.98% | 市场: A股
+2025-03-20 14:06:51.480 - INFO - [2025-03-20 14:06:51] [0.84s] 东湖高新(600133) 当前价: 10.04 | 涨跌幅: -0.3% | 市场: A股
+2025-03-20 14:06:51.985 - INFO - [2025-03-20 14:06:51] [0.00s] 用友网络(600588) 当前价: 16.59 | 涨跌幅: -0.12% | 市场: A股
+2025-03-20 14:06:52.497 - INFO - [2025-03-20 14:06:52] [0.00s] 隆基绿能(601012) 当前价: 17.43 | 涨跌幅: -1.3% | 市场: A股
+2025-03-20 14:06:53.015 - INFO - [2025-03-20 14:06:53] [0.00s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 14:09:48.909 - INFO - ------------------------------------ 2025-03-20 14:09:48 ---------------------------------------------- 
+
+2025-03-20 14:09:49.756 - INFO - [2025-03-20 14:09:49] [0.85s] 拓维信息(002261) 当前价: 35.27 | 涨跌幅: 3.1% | 市场: A股
+2025-03-20 14:09:50.270 - INFO - [2025-03-20 14:09:50] [0.00s] 浪潮信息(000977) 当前价: 58.57 | 涨跌幅: -0.83% | 市场: A股
+2025-03-20 14:09:51.812 - INFO - [2025-03-20 14:09:51] [1.03s] 东湖高新(600133) 当前价: 10.06 | 涨跌幅: -0.1% | 市场: A股
+2025-03-20 14:09:52.332 - INFO - [2025-03-20 14:09:52] [0.01s] 用友网络(600588) 当前价: 16.62 | 涨跌幅: 0.06% | 市场: A股
+2025-03-20 14:09:52.841 - INFO - [2025-03-20 14:09:52] [0.00s] 隆基绿能(601012) 当前价: 17.45 | 涨跌幅: -1.19% | 市场: A股
+2025-03-20 14:09:53.349 - INFO - [2025-03-20 14:09:53] [0.00s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 14:12:48.924 - INFO - ------------------------------------ 2025-03-20 14:12:48 ---------------------------------------------- 
+
+2025-03-20 14:12:49.882 - INFO - [2025-03-20 14:12:49] [0.96s] 拓维信息(002261) 当前价: 35.27 | 涨跌幅: 3.1% | 市场: A股
+2025-03-20 14:12:50.387 - INFO - [2025-03-20 14:12:50] [0.00s] 浪潮信息(000977) 当前价: 58.51 | 涨跌幅: -0.93% | 市场: A股
+2025-03-20 14:12:52.112 - INFO - [2025-03-20 14:12:52] [1.22s] 东湖高新(600133) 当前价: 10.05 | 涨跌幅: -0.2% | 市场: A股
+2025-03-20 14:12:52.620 - INFO - [2025-03-20 14:12:52] [0.00s] 用友网络(600588) 当前价: 16.62 | 涨跌幅: 0.06% | 市场: A股
+2025-03-20 14:12:53.135 - INFO - [2025-03-20 14:12:53] [0.00s] 隆基绿能(601012) 当前价: 17.43 | 涨跌幅: -1.3% | 市场: A股
+2025-03-20 14:12:53.648 - INFO - [2025-03-20 14:12:53] [0.00s] 光明乳业(600597) 当前价: 8.6 | 涨跌幅: -0.58% | 市场: A股
+2025-03-20 14:15:48.928 - INFO - ------------------------------------ 2025-03-20 14:15:48 ---------------------------------------------- 
+
+2025-03-20 14:15:49.910 - INFO - [2025-03-20 14:15:49] [0.98s] 拓维信息(002261) 当前价: 35.24 | 涨跌幅: 3.01% | 市场: A股
+2025-03-20 14:15:50.428 - INFO - [2025-03-20 14:15:50] [0.01s] 浪潮信息(000977) 当前价: 58.49 | 涨跌幅: -0.97% | 市场: A股
+2025-03-20 14:15:51.769 - INFO - [2025-03-20 14:15:51] [0.83s] 东湖高新(600133) 当前价: 10.05 | 涨跌幅: -0.2% | 市场: A股
+2025-03-20 14:15:52.275 - INFO - [2025-03-20 14:15:52] [0.01s] 用友网络(600588) 当前价: 16.6 | 涨跌幅: -0.06% | 市场: A股
+2025-03-20 14:15:52.779 - INFO - [2025-03-20 14:15:52] [0.00s] 隆基绿能(601012) 当前价: 17.42 | 涨跌幅: -1.36% | 市场: A股
+2025-03-20 14:15:53.291 - INFO - [2025-03-20 14:15:53] [0.00s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 14:18:48.936 - INFO - ------------------------------------ 2025-03-20 14:18:48 ---------------------------------------------- 
+
+2025-03-20 14:18:49.711 - INFO - [2025-03-20 14:18:49] [0.77s] 拓维信息(002261) 当前价: 35.24 | 涨跌幅: 3.01% | 市场: A股
+2025-03-20 14:18:50.228 - INFO - [2025-03-20 14:18:50] [0.00s] 浪潮信息(000977) 当前价: 58.53 | 涨跌幅: -0.9% | 市场: A股
+2025-03-20 14:18:51.566 - INFO - [2025-03-20 14:18:51] [0.83s] 东湖高新(600133) 当前价: 10.06 | 涨跌幅: -0.1% | 市场: A股
+2025-03-20 14:18:52.074 - INFO - [2025-03-20 14:18:52] [0.00s] 用友网络(600588) 当前价: 16.6 | 涨跌幅: -0.06% | 市场: A股
+2025-03-20 14:18:52.587 - INFO - [2025-03-20 14:18:52] [0.00s] 隆基绿能(601012) 当前价: 17.42 | 涨跌幅: -1.36% | 市场: A股
+2025-03-20 14:18:53.101 - INFO - [2025-03-20 14:18:53] [0.00s] 光明乳业(600597) 当前价: 8.6 | 涨跌幅: -0.58% | 市场: A股
+2025-03-20 14:21:48.938 - INFO - ------------------------------------ 2025-03-20 14:21:48 ---------------------------------------------- 
+
+2025-03-20 14:21:50.446 - INFO - [2025-03-20 14:21:50] [1.51s] 拓维信息(002261) 当前价: 35.26 | 涨跌幅: 3.07% | 市场: A股
+2025-03-20 14:21:50.961 - INFO - [2025-03-20 14:21:50] [0.01s] 浪潮信息(000977) 当前价: 58.45 | 涨跌幅: -1.03% | 市场: A股
+2025-03-20 14:21:52.631 - INFO - [2025-03-20 14:21:52] [1.16s] 东湖高新(600133) 当前价: 10.05 | 涨跌幅: -0.2% | 市场: A股
+2025-03-20 14:21:53.148 - INFO - [2025-03-20 14:21:53] [0.00s] 用友网络(600588) 当前价: 16.57 | 涨跌幅: -0.24% | 市场: A股
+2025-03-20 14:21:53.659 - INFO - [2025-03-20 14:21:53] [0.00s] 隆基绿能(601012) 当前价: 17.42 | 涨跌幅: -1.36% | 市场: A股
+2025-03-20 14:21:54.175 - INFO - [2025-03-20 14:21:54] [0.00s] 光明乳业(600597) 当前价: 8.6 | 涨跌幅: -0.58% | 市场: A股
+2025-03-20 14:24:48.945 - INFO - ------------------------------------ 2025-03-20 14:24:48 ---------------------------------------------- 
+
+2025-03-20 14:24:50.274 - INFO - [2025-03-20 14:24:50] [1.33s] 拓维信息(002261) 当前价: 35.27 | 涨跌幅: 3.1% | 市场: A股
+2025-03-20 14:24:50.782 - INFO - [2025-03-20 14:24:50] [0.00s] 浪潮信息(000977) 当前价: 58.49 | 涨跌幅: -0.97% | 市场: A股
+2025-03-20 14:24:52.603 - INFO - [2025-03-20 14:24:52] [1.32s] 东湖高新(600133) 当前价: 10.04 | 涨跌幅: -0.3% | 市场: A股
+2025-03-20 14:24:53.121 - INFO - [2025-03-20 14:24:53] [0.01s] 用友网络(600588) 当前价: 16.57 | 涨跌幅: -0.24% | 市场: A股
+2025-03-20 14:24:53.623 - INFO - [2025-03-20 14:24:53] [0.00s] 隆基绿能(601012) 当前价: 17.41 | 涨跌幅: -1.42% | 市场: A股
+2025-03-20 14:24:54.138 - INFO - [2025-03-20 14:24:54] [0.00s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 14:27:48.955 - INFO - ------------------------------------ 2025-03-20 14:27:48 ---------------------------------------------- 
+
+2025-03-20 14:27:50.583 - INFO - [2025-03-20 14:27:50] [1.63s] 拓维信息(002261) 当前价: 35.27 | 涨跌幅: 3.1% | 市场: A股
+2025-03-20 14:27:51.091 - INFO - [2025-03-20 14:27:51] [0.00s] 浪潮信息(000977) 当前价: 58.48 | 涨跌幅: -0.98% | 市场: A股
+2025-03-20 14:27:53.059 - INFO - [2025-03-20 14:27:53] [1.45s] 东湖高新(600133) 当前价: 10.04 | 涨跌幅: -0.3% | 市场: A股
+2025-03-20 14:27:53.563 - INFO - [2025-03-20 14:27:53] [0.00s] 用友网络(600588) 当前价: 16.58 | 涨跌幅: -0.18% | 市场: A股
+2025-03-20 14:27:54.072 - INFO - [2025-03-20 14:27:54] [0.00s] 隆基绿能(601012) 当前价: 17.41 | 涨跌幅: -1.42% | 市场: A股
+2025-03-20 14:27:54.591 - INFO - [2025-03-20 14:27:54] [0.00s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 14:30:48.961 - INFO - ------------------------------------ 2025-03-20 14:30:48 ---------------------------------------------- 
+
+2025-03-20 14:30:50.756 - INFO - [2025-03-20 14:30:50] [1.79s] 拓维信息(002261) 当前价: 35.26 | 涨跌幅: 3.07% | 市场: A股
+2025-03-20 14:30:51.277 - INFO - [2025-03-20 14:30:51] [0.01s] 浪潮信息(000977) 当前价: 58.48 | 涨跌幅: -0.98% | 市场: A股
+2025-03-20 14:30:52.951 - INFO - [2025-03-20 14:30:52] [1.16s] 东湖高新(600133) 当前价: 10.04 | 涨跌幅: -0.3% | 市场: A股
+2025-03-20 14:30:53.464 - INFO - [2025-03-20 14:30:53] [0.00s] 用友网络(600588) 当前价: 16.6 | 涨跌幅: -0.06% | 市场: A股
+2025-03-20 14:30:53.975 - INFO - [2025-03-20 14:30:53] [0.00s] 隆基绿能(601012) 当前价: 17.42 | 涨跌幅: -1.36% | 市场: A股
+2025-03-20 14:30:54.488 - INFO - [2025-03-20 14:30:54] [0.00s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 14:33:48.963 - INFO - ------------------------------------ 2025-03-20 14:33:48 ---------------------------------------------- 
+
+2025-03-20 14:33:50.132 - INFO - [2025-03-20 14:33:50] [1.17s] 拓维信息(002261) 当前价: 35.3 | 涨跌幅: 3.19% | 市场: A股
+2025-03-20 14:33:50.643 - INFO - [2025-03-20 14:33:50] [0.00s] 浪潮信息(000977) 当前价: 58.6 | 涨跌幅: -0.78% | 市场: A股
+2025-03-20 14:33:53.453 - INFO - [2025-03-20 14:33:53] [2.30s] 东湖高新(600133) 当前价: 10.06 | 涨跌幅: -0.1% | 市场: A股
+2025-03-20 14:33:53.958 - INFO - [2025-03-20 14:33:53] [0.00s] 用友网络(600588) 当前价: 16.62 | 涨跌幅: 0.06% | 市场: A股
+2025-03-20 14:33:54.468 - INFO - [2025-03-20 14:33:54] [0.00s] 隆基绿能(601012) 当前价: 17.43 | 涨跌幅: -1.3% | 市场: A股
+2025-03-20 14:33:54.981 - INFO - [2025-03-20 14:33:54] [0.00s] 光明乳业(600597) 当前价: 8.6 | 涨跌幅: -0.58% | 市场: A股
+2025-03-20 14:36:48.967 - INFO - ------------------------------------ 2025-03-20 14:36:48 ---------------------------------------------- 
+
+2025-03-20 14:36:49.773 - INFO - [2025-03-20 14:36:49] [0.80s] 拓维信息(002261) 当前价: 35.6 | 涨跌幅: 4.06% | 市场: A股
+2025-03-20 14:36:50.281 - INFO - [2025-03-20 14:36:50] [0.00s] 浪潮信息(000977) 当前价: 58.48 | 涨跌幅: -0.98% | 市场: A股
+2025-03-20 14:36:51.719 - INFO - [2025-03-20 14:36:51] [0.93s] 东湖高新(600133) 当前价: 10.04 | 涨跌幅: -0.3% | 市场: A股
+2025-03-20 14:36:52.223 - INFO - [2025-03-20 14:36:52] [0.00s] 用友网络(600588) 当前价: 16.61 | 涨跌幅: 0.0% | 市场: A股
+2025-03-20 14:36:52.733 - INFO - [2025-03-20 14:36:52] [0.00s] 隆基绿能(601012) 当前价: 17.41 | 涨跌幅: -1.42% | 市场: A股
+2025-03-20 14:36:53.242 - INFO - [2025-03-20 14:36:53] [0.00s] 光明乳业(600597) 当前价: 8.57 | 涨跌幅: -0.92% | 市场: A股
+2025-03-20 14:39:48.972 - INFO - ------------------------------------ 2025-03-20 14:39:48 ---------------------------------------------- 
+
+2025-03-20 14:39:49.819 - INFO - [2025-03-20 14:39:49] [0.85s] 拓维信息(002261) 当前价: 35.46 | 涨跌幅: 3.65% | 市场: A股
+2025-03-20 14:39:50.324 - INFO - [2025-03-20 14:39:50] [0.00s] 浪潮信息(000977) 当前价: 58.45 | 涨跌幅: -1.03% | 市场: A股
+2025-03-20 14:39:52.030 - INFO - [2025-03-20 14:39:52] [1.20s] 东湖高新(600133) 当前价: 10.02 | 涨跌幅: -0.5% | 市场: A股
+2025-03-20 14:39:52.547 - INFO - [2025-03-20 14:39:52] [0.00s] 用友网络(600588) 当前价: 16.56 | 涨跌幅: -0.3% | 市场: A股
+2025-03-20 14:39:53.061 - INFO - [2025-03-20 14:39:53] [0.00s] 隆基绿能(601012) 当前价: 17.4 | 涨跌幅: -1.47% | 市场: A股
+2025-03-20 14:39:53.576 - INFO - [2025-03-20 14:39:53] [0.00s] 光明乳业(600597) 当前价: 8.57 | 涨跌幅: -0.92% | 市场: A股
+2025-03-20 14:42:48.978 - INFO - ------------------------------------ 2025-03-20 14:42:48 ---------------------------------------------- 
+
+2025-03-20 14:42:51.176 - INFO - [2025-03-20 14:42:51] [2.20s] 拓维信息(002261) 当前价: 35.3 | 涨跌幅: 3.19% | 市场: A股
+2025-03-20 14:42:51.684 - INFO - [2025-03-20 14:42:51] [0.00s] 浪潮信息(000977) 当前价: 58.29 | 涨跌幅: -1.3% | 市场: A股
+2025-03-20 14:42:53.512 - INFO - [2025-03-20 14:42:53] [1.31s] 东湖高新(600133) 当前价: 10.01 | 涨跌幅: -0.6% | 市场: A股
+2025-03-20 14:42:54.019 - INFO - [2025-03-20 14:42:54] [0.00s] 用友网络(600588) 当前价: 16.5 | 涨跌幅: -0.66% | 市场: A股
+2025-03-20 14:42:54.527 - INFO - [2025-03-20 14:42:54] [0.00s] 隆基绿能(601012) 当前价: 17.38 | 涨跌幅: -1.59% | 市场: A股
+2025-03-20 14:42:55.033 - INFO - [2025-03-20 14:42:55] [0.01s] 光明乳业(600597) 当前价: 8.56 | 涨跌幅: -1.04% | 市场: A股
+2025-03-20 14:45:48.982 - INFO - ------------------------------------ 2025-03-20 14:45:48 ---------------------------------------------- 
+
+2025-03-20 14:46:11.261 - ERROR - Akshare数据获取失败: Cannot connect to host 82.push2.eastmoney.com:443 ssl:False [信号灯超时时间已到]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1116, in _wrap_create_connection
+    sock = await aiohappyeyeballs.start_connection(
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohappyeyeballs\impl.py", line 122, in start_connection
+    raise first_exception
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohappyeyeballs\impl.py", line 73, in start_connection
+    sock = await _connect_sock(
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohappyeyeballs\impl.py", line 208, in _connect_sock
+    await loop.sock_connect(sock, address)
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\proactor_events.py", line 709, in sock_connect
+    return await self._proactor.connect(sock, address)
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\windows_events.py", line 826, in _poll
+    value = callback(transferred, key, ov)
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\windows_events.py", line 613, in finish_connect
+    ov.getresult()
+OSError: [WinError 121] 信号灯超时时间已到
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\privategit\github\Sequoia\tests\stock_tool.py", line 185, in get_cached_stock_data
+    df = ak.stock_zh_a_spot_em()
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 229, in stock_zh_a_spot_em
+    return asyncio.run(stock_zh_a_spot_em_async())
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 218, in stock_zh_a_spot_em_async
+    results = await fetch_all_pages_async(url, params)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 53, in fetch_all_pages_async
+    results = await asyncio.gather(*tasks)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 21, in fetch_single_page
+    async with session.get(url, params=params, ssl=False) as response:
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\client.py", line 703, in _request
+    conn = await self._connector.connect(
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1414, in _create_direct_connection
+    raise last_exc
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1383, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1135, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host 82.push2.eastmoney.com:443 ssl:False [信号灯超时时间已到]
+2025-03-20 14:46:12.958 - INFO - [2025-03-20 14:46:12] [23.98s] 拓维信息(002261) 当前价: 35.29 | 涨跌幅: 3.16% | 市场: sz
+2025-03-20 14:46:15.124 - INFO - [2025-03-20 14:46:15] [1.67s] 浪潮信息(000977) 当前价: 58.4 | 涨跌幅: -1.12% | 市场: sz
+2025-03-20 14:46:16.744 - INFO - [2025-03-20 14:46:16] [1.12s] 东湖高新(600133) 当前价: 10.01 | 涨跌幅: -0.6% | 市场: A股
+2025-03-20 14:46:17.250 - INFO - [2025-03-20 14:46:17] [0.00s] 用友网络(600588) 当前价: 16.5 | 涨跌幅: -0.66% | 市场: A股
+2025-03-20 14:46:17.760 - INFO - [2025-03-20 14:46:17] [0.00s] 隆基绿能(601012) 当前价: 17.4 | 涨跌幅: -1.47% | 市场: A股
+2025-03-20 14:46:18.269 - INFO - [2025-03-20 14:46:18] [0.00s] 光明乳业(600597) 当前价: 8.57 | 涨跌幅: -0.92% | 市场: A股
+2025-03-20 14:48:48.986 - INFO - ------------------------------------ 2025-03-20 14:48:48 ---------------------------------------------- 
+
+2025-03-20 14:49:00.083 - ERROR - Akshare数据获取失败: Cannot connect to host 82.push2.eastmoney.com:443 ssl:False [getaddrinfo failed]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1365, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 995, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1026, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\resolver.py", line 39, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "D:\ProgramData\my_custom_envs\py310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\ProgramData\my_custom_envs\py310\lib\socket.py", line 967, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\privategit\github\Sequoia\tests\stock_tool.py", line 185, in get_cached_stock_data
+    df = ak.stock_zh_a_spot_em()
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 229, in stock_zh_a_spot_em
+    return asyncio.run(stock_zh_a_spot_em_async())
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 218, in stock_zh_a_spot_em_async
+    results = await fetch_all_pages_async(url, params)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 32, in fetch_all_pages_async
+    first_page_data = await fetch_single_page(session, url, first_page_params)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 21, in fetch_single_page
+    async with session.get(url, params=params, ssl=False) as response:
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\client.py", line 703, in _request
+    conn = await self._connector.connect(
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1371, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host 82.push2.eastmoney.com:443 ssl:False [getaddrinfo failed]
+2025-03-20 14:49:02.778 - INFO - [2025-03-20 14:49:02] [13.79s] 拓维信息(002261) 当前价: 35.37 | 涨跌幅: 3.39% | 市场: sz
+2025-03-20 14:49:04.900 - INFO - [2025-03-20 14:49:04] [1.61s] 浪潮信息(000977) 当前价: 58.36 | 涨跌幅: -1.19% | 市场: sz
+2025-03-20 14:49:16.496 - ERROR - Akshare数据获取失败: Cannot connect to host 82.push2.eastmoney.com:443 ssl:False [getaddrinfo failed]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1365, in _create_direct_connection
+    hosts = await self._resolve_host(host, port, traces=traces)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 995, in _resolve_host
+    return await asyncio.shield(resolved_host_task)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1026, in _resolve_host_with_throttle
+    addrs = await self._resolver.resolve(host, port, family=self._family)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\resolver.py", line 39, in resolve
+    infos = await self._loop.getaddrinfo(
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\base_events.py", line 863, in getaddrinfo
+    return await self.run_in_executor(
+  File "D:\ProgramData\my_custom_envs\py310\lib\concurrent\futures\thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "D:\ProgramData\my_custom_envs\py310\lib\socket.py", line 967, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\privategit\github\Sequoia\tests\stock_tool.py", line 185, in get_cached_stock_data
+    df = ak.stock_zh_a_spot_em()
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 229, in stock_zh_a_spot_em
+    return asyncio.run(stock_zh_a_spot_em_async())
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "D:\ProgramData\my_custom_envs\py310\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 218, in stock_zh_a_spot_em_async
+    results = await fetch_all_pages_async(url, params)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 32, in fetch_all_pages_async
+    first_page_data = await fetch_single_page(session, url, first_page_params)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\akshare\stock_a\stock_zh_a_spot.py", line 21, in fetch_single_page
+    async with session.get(url, params=params, ssl=False) as response:
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\client.py", line 1425, in __aenter__
+    self._resp: _RetType = await self._coro
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\client.py", line 703, in _request
+    conn = await self._connector.connect(
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 548, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1056, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\aiohttp\connector.py", line 1371, in _create_direct_connection
+    raise ClientConnectorDNSError(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorDNSError: Cannot connect to host 82.push2.eastmoney.com:443 ssl:False [getaddrinfo failed]
+2025-03-20 14:49:18.197 - INFO - [2025-03-20 14:49:18] [12.79s] 东湖高新(600133) 当前价: 10.02 | 涨跌幅: -0.5% | 市场: sh
+2025-03-20 14:49:20.323 - INFO - [2025-03-20 14:49:20] [1.62s] 用友网络(600588) 当前价: 16.5 | 涨跌幅: -0.66% | 市场: sh
+2025-03-20 14:49:22.440 - INFO - [2025-03-20 14:49:22] [1.61s] 隆基绿能(601012) 当前价: 17.38 | 涨跌幅: -1.59% | 市场: sh
+2025-03-20 14:49:24.575 - INFO - [2025-03-20 14:49:24] [1.63s] 光明乳业(600597) 当前价: 8.57 | 涨跌幅: -0.92% | 市场: sh
+2025-03-20 14:51:48.995 - INFO - ------------------------------------ 2025-03-20 14:51:48 ---------------------------------------------- 
+
+2025-03-20 14:51:50.550 - INFO - [2025-03-20 14:51:50] [1.56s] 拓维信息(002261) 当前价: 35.15 | 涨跌幅: 2.75% | 市场: A股
+2025-03-20 14:51:51.056 - INFO - [2025-03-20 14:51:51] [0.00s] 浪潮信息(000977) 当前价: 58.32 | 涨跌幅: -1.25% | 市场: A股
+2025-03-20 14:51:52.691 - INFO - [2025-03-20 14:51:52] [1.13s] 东湖高新(600133) 当前价: 10.02 | 涨跌幅: -0.5% | 市场: A股
+2025-03-20 14:51:53.200 - INFO - [2025-03-20 14:51:53] [0.00s] 用友网络(600588) 当前价: 16.5 | 涨跌幅: -0.66% | 市场: A股
+2025-03-20 14:51:53.713 - INFO - [2025-03-20 14:51:53] [0.00s] 隆基绿能(601012) 当前价: 17.39 | 涨跌幅: -1.53% | 市场: A股
+2025-03-20 14:51:54.234 - INFO - [2025-03-20 14:51:54] [0.01s] 光明乳业(600597) 当前价: 8.57 | 涨跌幅: -0.92% | 市场: A股
+2025-03-20 14:54:49.009 - INFO - ------------------------------------ 2025-03-20 14:54:49 ---------------------------------------------- 
+
+2025-03-20 14:54:50.796 - INFO - [2025-03-20 14:54:50] [1.79s] 拓维信息(002261) 当前价: 34.9 | 涨跌幅: 2.02% | 市场: A股
+2025-03-20 14:54:51.319 - INFO - [2025-03-20 14:54:51] [0.01s] 浪潮信息(000977) 当前价: 58.31 | 涨跌幅: -1.27% | 市场: A股
+2025-03-20 14:54:53.150 - INFO - [2025-03-20 14:54:53] [1.33s] 东湖高新(600133) 当前价: 10.01 | 涨跌幅: -0.6% | 市场: A股
+2025-03-20 14:54:53.661 - INFO - [2025-03-20 14:54:53] [0.01s] 用友网络(600588) 当前价: 16.5 | 涨跌幅: -0.66% | 市场: A股
+2025-03-20 14:54:54.174 - INFO - [2025-03-20 14:54:54] [0.01s] 隆基绿能(601012) 当前价: 17.39 | 涨跌幅: -1.53% | 市场: A股
+2025-03-20 14:54:54.689 - INFO - [2025-03-20 14:54:54] [0.01s] 光明乳业(600597) 当前价: 8.57 | 涨跌幅: -0.92% | 市场: A股
+2025-03-20 14:57:49.062 - INFO - ------------------------------------ 2025-03-20 14:57:49 ---------------------------------------------- 
+
+2025-03-20 14:57:51.398 - INFO - [2025-03-20 14:57:51] [2.33s] 拓维信息(002261) 当前价: 35.2 | 涨跌幅: 2.89% | 市场: A股
+2025-03-20 14:57:51.922 - INFO - [2025-03-20 14:57:51] [0.01s] 浪潮信息(000977) 当前价: 58.31 | 涨跌幅: -1.27% | 市场: A股
+2025-03-20 14:57:54.118 - INFO - [2025-03-20 14:57:54] [1.68s] 东湖高新(600133) 当前价: 10.02 | 涨跌幅: -0.5% | 市场: A股
+2025-03-20 14:57:54.640 - INFO - [2025-03-20 14:57:54] [0.01s] 用友网络(600588) 当前价: 16.52 | 涨跌幅: -0.54% | 市场: A股
+2025-03-20 14:57:55.160 - INFO - [2025-03-20 14:57:55] [0.01s] 隆基绿能(601012) 当前价: 17.42 | 涨跌幅: -1.36% | 市场: A股
+2025-03-20 14:57:55.677 - INFO - [2025-03-20 14:57:55] [0.01s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 15:00:49.030 - INFO - ------------------------------------ 2025-03-20 15:00:49 ---------------------------------------------- 
+
+2025-03-20 15:00:49.744 - INFO - [2025-03-20 15:00:49] [0.71s] 拓维信息(002261) 当前价: 35.2 | 涨跌幅: 2.89% | 市场: A股
+2025-03-20 15:00:50.259 - INFO - [2025-03-20 15:00:50] [0.01s] 浪潮信息(000977) 当前价: 58.3 | 涨跌幅: -1.29% | 市场: A股
+2025-03-20 15:00:51.577 - INFO - [2025-03-20 15:00:51] [0.81s] 东湖高新(600133) 当前价: 10.02 | 涨跌幅: -0.5% | 市场: A股
+2025-03-20 15:00:52.085 - INFO - [2025-03-20 15:00:52] [0.00s] 用友网络(600588) 当前价: 16.51 | 涨跌幅: -0.6% | 市场: A股
+2025-03-20 15:00:52.602 - INFO - [2025-03-20 15:00:52] [0.00s] 隆基绿能(601012) 当前价: 17.43 | 涨跌幅: -1.3% | 市场: A股
+2025-03-20 15:00:53.120 - INFO - [2025-03-20 15:00:53] [0.01s] 光明乳业(600597) 当前价: 8.59 | 涨跌幅: -0.69% | 市场: A股
+2025-03-20 15:03:49.034 - INFO - 非交易时间段，1106分钟后重试...
+2025-03-20 15:22:13.250 - INFO - 程序启动，日志文件路径：D:\privategit\github\Sequoia\tests\logs\2025-03-20.log
+2025-03-20 15:22:13.252 - INFO - 非交易时间段，1087分钟后重试...

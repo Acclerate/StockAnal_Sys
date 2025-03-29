@@ -1,0 +1,794 @@
+2025-03-22 21:46:00,895 - INFO - 使用数据源: AKShare主源, 股票数量: 5400
+2025-03-22 21:46:00,897 - INFO - 开始筛选 5400 只股票
+2025-03-22 21:46:04,917 - ERROR - 分析股票时发生错误 000001: RetryError[<Future at 0x188d74e37f0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d74e37f0 state=finished raised TypeError>]
+2025-03-22 21:46:04,918 - ERROR - 分析股票时发生错误 000002: RetryError[<Future at 0x188d8e78730 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e78730 state=finished raised TypeError>]
+2025-03-22 21:46:04,934 - ERROR - 分析股票时发生错误 000004: RetryError[<Future at 0x188d8e78a00 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e78a00 state=finished raised TypeError>]
+2025-03-22 21:46:04,937 - ERROR - 分析股票时发生错误 000006: RetryError[<Future at 0x188d8e78b80 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e78b80 state=finished raised TypeError>]
+2025-03-22 21:46:08,929 - ERROR - 分析股票时发生错误 000007: RetryError[<Future at 0x188d8e78e20 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e78e20 state=finished raised TypeError>]
+2025-03-22 21:46:08,931 - ERROR - 分析股票时发生错误 000008: RetryError[<Future at 0x188d8e790f0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e790f0 state=finished raised TypeError>]
+2025-03-22 21:46:08,944 - ERROR - 分析股票时发生错误 000009: RetryError[<Future at 0x188d8e79330 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79330 state=finished raised TypeError>]
+2025-03-22 21:46:08,946 - ERROR - 分析股票时发生错误 000010: RetryError[<Future at 0x188d8e794b0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e794b0 state=finished raised TypeError>]
+2025-03-22 21:46:12,955 - ERROR - 分析股票时发生错误 000012: RetryError[<Future at 0x188d8e79870 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79870 state=finished raised TypeError>]
+2025-03-22 21:46:12,955 - ERROR - 分析股票时发生错误 000011: RetryError[<Future at 0x188d8e799f0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e799f0 state=finished raised TypeError>]
+2025-03-22 21:46:12,970 - ERROR - 分析股票时发生错误 000016: RetryError[<Future at 0x188d8e79db0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79db0 state=finished raised TypeError>]
+2025-03-22 21:46:12,970 - ERROR - 分析股票时发生错误 000014: RetryError[<Future at 0x188d8e79f30 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79f30 state=finished raised TypeError>]
+2025-03-22 21:46:16,980 - ERROR - 分析股票时发生错误 000019: RetryError[<Future at 0x188d8e79d50 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79d50 state=finished raised TypeError>]
+2025-03-22 21:46:16,980 - ERROR - 分析股票时发生错误 000017: RetryError[<Future at 0x188d8e7a470 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7a470 state=finished raised TypeError>]
+2025-03-22 21:46:16,996 - ERROR - 分析股票时发生错误 000020: RetryError[<Future at 0x188d8e7a830 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7a830 state=finished raised TypeError>]
+2025-03-22 21:46:16,997 - ERROR - 分析股票时发生错误 000021: RetryError[<Future at 0x188d8e7a9b0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7a9b0 state=finished raised TypeError>]
+2025-03-22 21:46:20,996 - ERROR - 分析股票时发生错误 000025: RetryError[<Future at 0x188d74e39d0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d74e39d0 state=finished raised TypeError>]
+2025-03-22 21:46:20,996 - ERROR - 分析股票时发生错误 000026: RetryError[<Future at 0x188d8e7a8f0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7a8f0 state=finished raised TypeError>]
+2025-03-22 21:46:21,010 - ERROR - 分析股票时发生错误 000028: RetryError[<Future at 0x188d8e79e40 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79e40 state=finished raised TypeError>]
+2025-03-22 21:46:21,011 - ERROR - 分析股票时发生错误 000027: RetryError[<Future at 0x188d8e7a500 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7a500 state=finished raised TypeError>]
+2025-03-22 21:46:25,022 - ERROR - 分析股票时发生错误 000029: RetryError[<Future at 0x188d8e7a6e0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7a6e0 state=finished raised TypeError>]
+2025-03-22 21:46:25,023 - ERROR - 分析股票时发生错误 000030: RetryError[<Future at 0x188d8e79fc0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79fc0 state=finished raised TypeError>]
+2025-03-22 21:46:25,038 - ERROR - 分析股票时发生错误 000032: RetryError[<Future at 0x188d8e79930 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79930 state=finished raised TypeError>]
+2025-03-22 21:46:25,038 - ERROR - 分析股票时发生错误 000031: RetryError[<Future at 0x188d8e79a80 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79a80 state=finished raised TypeError>]
+2025-03-22 21:46:29,050 - ERROR - 分析股票时发生错误 000034: RetryError[<Future at 0x188d8e79720 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e79720 state=finished raised TypeError>]
+2025-03-22 21:46:29,051 - ERROR - 分析股票时发生错误 000035: RetryError[<Future at 0x188d8e7ac80 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7ac80 state=finished raised TypeError>]
+2025-03-22 21:46:29,067 - ERROR - 分析股票时发生错误 000036: RetryError[<Future at 0x188d8e795a0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e795a0 state=finished raised TypeError>]
+2025-03-22 21:46:29,068 - ERROR - 分析股票时发生错误 000037: RetryError[<Future at 0x188d8e7b1c0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7b1c0 state=finished raised TypeError>]
+2025-03-22 21:46:33,066 - ERROR - 分析股票时发生错误 000039: RetryError[<Future at 0x188d8e7b130 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7b130 state=finished raised TypeError>]
+2025-03-22 21:46:33,066 - ERROR - 分析股票时发生错误 000040: RetryError[<Future at 0x188d8e7b700 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7b700 state=finished raised TypeError>]
+2025-03-22 21:46:33,081 - ERROR - 分析股票时发生错误 000042: RetryError[<Future at 0x188d7ac5870 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d7ac5870 state=finished raised TypeError>]
+2025-03-22 21:46:33,081 - ERROR - 分析股票时发生错误 000045: RetryError[<Future at 0x188d7ac4b20 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d7ac4b20 state=finished raised TypeError>]
+2025-03-22 21:46:37,089 - ERROR - 分析股票时发生错误 000048: RetryError[<Future at 0x188d7ac5420 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d7ac5420 state=finished raised TypeError>]
+2025-03-22 21:46:37,091 - ERROR - 分析股票时发生错误 000049: RetryError[<Future at 0x188d8e792d0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e792d0 state=finished raised TypeError>]
+2025-03-22 21:46:37,104 - ERROR - 分析股票时发生错误 000050: RetryError[<Future at 0x188d8e7b1f0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e7b1f0 state=finished raised TypeError>]
+2025-03-22 21:46:37,105 - ERROR - 分析股票时发生错误 000055: RetryError[<Future at 0x188d8e796c0 state=finished raised TypeError>]
+Traceback (most recent call last):
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 478, in __call__
+    result = fn(*args, **kwargs)
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 149, in get_financial_data
+    df = ak.stock_financial_analysis_indicator(
+TypeError: stock_financial_analysis_indicator() got an unexpected keyword argument 'stock'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "d:\privategit\github\Sequoia\tests\stock_recommend_re.py", line 231, in analyze_stock
+    finance_df = get_financial_data(stock_code)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 336, in wrapped_f
+    return copy(f, *args, **kw)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 475, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 376, in iter
+    result = action(retry_state)
+  File "D:\ProgramData\my_custom_envs\py310\lib\site-packages\tenacity\__init__.py", line 419, in exc_check
+    raise retry_exc from fut.exception()
+tenacity.RetryError: RetryError[<Future at 0x188d8e796c0 state=finished raised TypeError>]
