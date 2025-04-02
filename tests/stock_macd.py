@@ -19,8 +19,8 @@ def get_stock_data():
     # start_date = (datetime.now() - timedelta(days=1*90)).strftime('%Y%m%d')
     
     df = ak.stock_zh_a_hist(
-        symbol="600133",  # 东湖高新
-        # symbol="002261",  # 拓维信息
+        # symbol="600133",  # 东湖高新
+        symbol="002261",  # 拓维信息
         # symbol="000977",  # 浪潮信息
         # symbol="600588",  # 埃斯顿
         # symbol="002747",  # 用友网络
@@ -47,36 +47,33 @@ def calculate_technical(df):
     df['position'] = df['signal'].diff()
     return df.dropna()
 def backtest(df):
-    capital = initial_capital
+    capital = float(initial_capital)  # 转换为浮点
     position = 0
-    portfolio = pd.DataFrame(index=df.index)
-    portfolio['close'] = df['收盘']
+    portfolio = pd.DataFrame(index=df.index, dtype='float64')
+    
+    portfolio['close'] = df['收盘'].astype('float64')
     portfolio['cash'] = capital
-    portfolio['shares'] = 0
+    portfolio['shares'] = 0.0  # 保持浮点类型
     portfolio['total'] = capital
     portfolio['signal'] = 0
 
-    for i in range(len(df)):  # 遍历所有数据点
-        # 当前信号（使用当日信号）
+    for i in range(len(df)):
         current_signal = df['position'].iloc[i]
         current_price = df['收盘'].iloc[i]
         
-        # 执行交易
-        if current_signal == 1:  # 金叉当日买入
+        if current_signal == 1:
             if position == 0:
-                # 计算可买数量（向下取整）
                 shares_bought = capital // (current_price * (1 + transaction_cost))
                 if shares_bought > 0:
                     cost = shares_bought * current_price * (1 + transaction_cost)
                     capital -= cost
                     position = shares_bought
-        elif current_signal == -1:  # 死叉当日卖出
+        elif current_signal == -1:
             if position > 0:
                 proceeds = position * current_price * (1 - transaction_cost)
                 capital += proceeds
                 position = 0
         
-        # 更新组合价值
         portfolio.iloc[i, 1] = capital
         portfolio.iloc[i, 2] = position
         portfolio.iloc[i, 3] = capital + position * current_price
@@ -90,11 +87,11 @@ def analyze_performance(portfolio):
     portfolio['returns'] = portfolio['total'].pct_change()
     
     # 总收益率
-    total_return = (portfolio['total'][-1] / initial_capital - 1) * 100
+    total_return = (portfolio['total'].iloc[-1] / initial_capital - 1) * 100
     
     # 年化收益率
     years = len(portfolio) / 252
-    annualized_return = (portfolio['total'][-1] / initial_capital) ** (1/years) - 1
+    annualized_return = (portfolio['total'].iloc[-1] / initial_capital) ** (1/years) - 1
     
     # 最大回撤
     portfolio['peak'] = portfolio['total'].cummax()
@@ -106,7 +103,7 @@ def analyze_performance(portfolio):
     total_trades = len(portfolio['returns'].dropna())
     win_rate = winning_trades / total_trades * 100
 
-    print(f"最终资产: {portfolio['total'][-1]:.2f}")
+    print(f"最终资产: {portfolio['total'].iloc[-1]:.2f}")
     print(f"总收益率: {total_return:.2f}%")
     print(f"年化收益率: {annualized_return*100:.2f}%")
     print(f"最大回撤: {max_drawdown:.2f}%")
