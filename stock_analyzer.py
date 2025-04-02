@@ -42,6 +42,7 @@ class StockAnalyzer:
         self.openai_api_key = os.getenv('OPENAI_API_KEY', os.getenv('OPENAI_API_KEY'))
         self.openai_api_url = os.getenv('OPENAI_API_URL', 'https://api.openai.com/v1')
         self.openai_model = os.getenv('OPENAI_API_MODEL', 'gemini-2.0-pro-exp-02-05')
+        self.function_call_model = os.getenv('FUNCTION_CALL_MODEL','gpt-4o')
         self.news_model = os.getenv('NEWS_MODEL')
 
         # 配置参数
@@ -843,70 +844,170 @@ class StockAnalyzer:
             def search_news(query):
                 """实际执行搜索的函数"""
                 try:
-                    # 获取SERP API密钥
+                    # 获取API密钥
                     serp_api_key = os.getenv('SERP_API_KEY')
-                    if not serp_api_key:
-                        self.logger.error("未找到SERP_API_KEY环境变量")
+                    tavily_api_key = os.getenv('TAVILY_API_KEY')
+
+                    if not serp_api_key and not tavily_api_key:
+                        self.logger.error("未找到SERP_API_KEY或TAVILY_API_KEY环境变量")
                         return {"error": "未配置搜索API密钥"}
-                    
+
                     # 构建搜索查询
                     search_query = f"{stock_name} {stock_code} {market_name} 最新新闻 公告"
-                    
-                    # 调用SERP API
-                    url = "https://serpapi.com/search"
-                    params = {
-                        "engine": "google",
-                        "q": search_query,
-                        "api_key": serp_api_key,
-                        "tbm": "nws",  # 新闻搜索
-                        "num": limit * 2  # 获取更多结果以便筛选
-                    }
-                    
-                    response = requests.get(url, params=params)
-                    search_results = response.json()
-                    
-                    # 提取新闻结果
-                    news_results = []
-                    if "news_results" in search_results:
-                        for item in search_results["news_results"][:limit]:
-                            news_results.append({
-                                "title": item.get("title", ""),
-                                "date": item.get("date", ""),
-                                "source": item.get("source", ""),
-                                "link": item.get("link", ""),
-                                "snippet": item.get("snippet", "")
-                            })
-                    
-                    # 构建行业新闻查询
                     industry_query = f"{industry} {market_name} 行业动态 最新消息"
-                    industry_params = {
-                        "engine": "google",
-                        "q": industry_query,
-                        "api_key": serp_api_key,
-                        "tbm": "nws",
-                        "num": limit
-                    }
-                    
-                    industry_response = requests.get(url, params=industry_params)
-                    industry_results = industry_response.json()
-                    
-                    # 提取行业新闻
+
+                    news_results = []
                     industry_news = []
-                    if "news_results" in industry_results:
-                        for item in industry_results["news_results"][:limit]:
-                            industry_news.append({
-                                "title": item.get("title", ""),
-                                "date": item.get("date", ""),
-                                "source": item.get("source", ""),
-                                "summary": item.get("snippet", "")
-                            })
-                    
-                    # 获取公告信息 (可能需要专门的API或网站爬取)
-                    # 这里简化处理，实际应用中可能需要更复杂的逻辑
+
+                    # 如果配置了SERP API，使用SERP API搜索
+                    if serp_api_key:
+                        self.logger.info(f"使用SERP API搜索新闻: {search_query}")
+
+                        # 调用SERP API获取股票新闻
+                        url = "https://serpapi.com/search"
+                        params = {
+                            "engine": "google",
+                            "q": search_query,
+                            "api_key": serp_api_key,
+                            "tbm": "nws",  # 新闻搜索
+                            "num": limit * 2  # 获取更多结果以便筛选
+                        }
+
+                        response = requests.get(url, params=params)
+                        search_results = response.json()
+
+                        # 提取新闻结果
+                        if "news_results" in search_results:
+                            for item in search_results["news_results"][:limit]:
+                                news_results.append({
+                                    "title": item.get("title", ""),
+                                    "date": item.get("date", ""),
+                                    "source": item.get("source", ""),
+                                    "link": item.get("link", ""),
+                                    "snippet": item.get("snippet", "")
+                                })
+
+                        # 构建行业新闻查询
+                        industry_params = {
+                            "engine": "google",
+                            "q": industry_query,
+                            "api_key": serp_api_key,
+                            "tbm": "nws",
+                            "num": limit
+                        }
+
+                        industry_response = requests.get(url, params=industry_params)
+                        industry_results = industry_response.json()
+
+                        # 提取行业新闻
+                        if "news_results" in industry_results:
+                            for item in industry_results["news_results"][:limit]:
+                                industry_news.append({
+                                    "title": item.get("title", ""),
+                                    "date": item.get("date", ""),
+                                    "source": item.get("source", ""),
+                                    "summary": item.get("snippet", "")
+                                })
+
+                    # 如果配置了Tavily API，使用Tavily API搜索
+                    if tavily_api_key:
+                        self.logger.info(f"使用Tavily API搜索新闻: {search_query}")
+
+                        try:
+                            from tavily import TavilyClient
+
+                            client = TavilyClient(tavily_api_key)
+
+                            # 搜索股票相关新闻
+                            tavily_response = client.search(
+                                query=search_query,
+                                topic="finance",
+                                search_depth="advanced"
+                            )
+
+                            # 提取新闻结果
+                            if "results" in tavily_response:
+                                for i, item in enumerate(tavily_response["results"][:limit]):
+                                    # 从URL提取域名作为来源
+                                    source = ""
+                                    if item.get("url"):
+                                        try:
+                                            from urllib.parse import urlparse
+                                            parsed_url = urlparse(item.get("url"))
+                                            source = parsed_url.netloc
+                                        except:
+                                            source = item.get("url", "").split('/')[2] if item.get("url") else ""
+
+                                    news_results.append({
+                                        "title": item.get("title", ""),
+                                        "date": datetime.now().strftime("%Y-%m-%d"),  # Tavily不提供日期，使用当前日期
+                                        "source": source,
+                                        "link": item.get("url", ""),
+                                        "snippet": item.get("content", "")
+                                    })
+
+                            # 搜索行业相关新闻
+                            tavily_industry_response = client.search(
+                                query=industry_query,
+                                topic="finance",
+                                search_depth="advanced"
+                            )
+
+                            # 提取行业新闻结果
+                            if "results" in tavily_industry_response:
+                                for i, item in enumerate(tavily_industry_response["results"][:limit]):
+                                    source = ""
+                                    if item.get("url"):
+                                        try:
+                                            from urllib.parse import urlparse
+                                            parsed_url = urlparse(item.get("url"))
+                                            source = parsed_url.netloc
+                                        except:
+                                            source = item.get("url", "").split('/')[2] if item.get("url") else ""
+
+                                    industry_news.append({
+                                        "title": item.get("title", ""),
+                                        "date": datetime.now().strftime("%Y-%m-%d"),
+                                        "source": source,
+                                        "summary": item.get("content", "")
+                                    })
+
+                            # 生成Tavily搜索结果的文本摘要（可用于调试）
+                            tavily_summary = ""
+                            if "results" in tavily_response:
+                                for i, item in enumerate(tavily_response["results"][:limit]):
+                                    tavily_summary += f"{i+1}、{item.get('title', '')}\n"
+                                    tavily_summary += f"{item.get('content', '')}\n\n"
+
+                            self.logger.info(f"Tavily搜索成功，获取到 {len(tavily_response.get('results', []))} 条新闻结果")
+
+                        except ImportError:
+                            self.logger.error("未安装Tavily客户端库，请使用pip install tavily-python安装")
+                        except Exception as e:
+                            self.logger.error(f"使用Tavily API搜索时出错: {str(e)}")
+                            self.logger.error(traceback.format_exc())
+
+                    # 移除可能的重复结果
+                    unique_news = []
+                    seen_titles = set()
+                    for item in news_results:
+                        title = item.get("title", "").strip()
+                        if title and title not in seen_titles:
+                            seen_titles.add(title)
+                            unique_news.append(item)
+
+                    unique_industry_news = []
+                    seen_industry_titles = set()
+                    for item in industry_news:
+                        title = item.get("title", "").strip()
+                        if title and title not in seen_industry_titles:
+                            seen_industry_titles.add(title)
+                            unique_industry_news.append(item)
+
+                    # 获取公告信息 (这部分保持不变)
                     announcements = []
-                    
-                    # 分析市场情绪
-                    # 简单实现：基于新闻标题和摘要的关键词分析
+
+                    # 分析市场情绪 (保持原有逻辑)
                     sentiment_keywords = {
                         'bullish': ['上涨', '增长', '利好', '突破', '强势', '看好', '机会', '利润'],
                         'slightly_bullish': ['回升', '改善', '企稳', '向好', '期待'],
@@ -914,32 +1015,36 @@ class StockAnalyzer:
                         'slightly_bearish': ['回调', '承压', '谨慎', '风险', '下滑'],
                         'bearish': ['下跌', '亏损', '跌破', '利空', '警惕', '危机', '崩盘']
                     }
-                    
+
                     # 计算情绪得分
                     sentiment_scores = {k: 0 for k in sentiment_keywords.keys()}
-                    all_text = " ".join([n.get("title", "") + " " + n.get("snippet", "") for n in news_results])
-                    
+                    all_text = " ".join([n.get("title", "") + " " + n.get("snippet", "") for n in unique_news])
+
                     for sentiment, keywords in sentiment_keywords.items():
                         for keyword in keywords:
                             if keyword in all_text:
                                 sentiment_scores[sentiment] += 1
-                    
+
                     # 确定主导情绪
                     if not sentiment_scores or all(score == 0 for score in sentiment_scores.values()):
                         market_sentiment = "neutral"
                     else:
                         market_sentiment = max(sentiment_scores.items(), key=lambda x: x[1])[0]
-                    
+
+                    self.logger.info(f"搜索完成，共获取到 {len(unique_news)} 条新闻和 {len(unique_industry_news)} 条行业新闻")
+
                     return {
-                        "news": news_results,
+                        "news": unique_news,
                         "announcements": announcements,
-                        "industry_news": industry_news,
+                        "industry_news": unique_industry_news,
                         "market_sentiment": market_sentiment
                     }
-                    
+
                 except Exception as e:
                     self.logger.error(f"搜索新闻时出错: {str(e)}")
+                    self.logger.error(traceback.format_exc())
                     return {"error": str(e)}
+
 
             def call_api():
                 try:
@@ -947,7 +1052,7 @@ class StockAnalyzer:
                     
                     # 第一步：调用模型，让它决定使用工具
                     response = openai.ChatCompletion.create(
-                        model=self.news_model,
+                        model=self.function_call_model,
                         messages=messages,
                         tools=tools,
                         tool_choice="auto",
@@ -1089,217 +1194,6 @@ class StockAnalyzer:
                 'market_sentiment': 'neutral',
                 'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             }
-
-    # def get_recommendation(self, score, market_type='A', technical_data=None, news_data=None):
-    #     """
-    #     根据得分和附加信息给出平滑的投资建议
-    #
-    #     参数:
-    #         score: 股票综合评分 (0-100)
-    #         market_type: 市场类型 (A/HK/US)
-    #         technical_data: 技术指标数据 (可选)
-    #         news_data: 新闻和市场情绪数据 (可选)
-    #
-    #     返回:
-    #         投资建议字符串
-    #     """
-    #     try:
-    #         # 1. 基础建议逻辑 - 基于分数的平滑建议
-    #         if score >= 85:
-    #             base_recommendation = '强烈建议买入'
-    #             confidence = 'high'
-    #             action = 'strong_buy'
-    #         elif score >= 70:
-    #             base_recommendation = '建议买入'
-    #             confidence = 'medium_high'
-    #             action = 'buy'
-    #         elif score >= 55:
-    #             base_recommendation = '谨慎买入'
-    #             confidence = 'medium'
-    #             action = 'cautious_buy'
-    #         elif score >= 45:
-    #             base_recommendation = '持观望态度'
-    #             confidence = 'medium'
-    #             action = 'hold'
-    #         elif score >= 30:
-    #             base_recommendation = '谨慎持有'
-    #             confidence = 'medium'
-    #             action = 'cautious_hold'
-    #         elif score >= 15:
-    #             base_recommendation = '建议减仓'
-    #             confidence = 'medium_high'
-    #             action = 'reduce'
-    #         else:
-    #             base_recommendation = '建议卖出'
-    #             confidence = 'high'
-    #             action = 'sell'
-    #
-    #         # 2. 考虑市场特性
-    #         market_adjustment = ""
-    #         if market_type == 'US':
-    #             # 美股调整因素
-    #             if self._is_earnings_season():
-    #                 if confidence == 'high' or confidence == 'medium_high':
-    #                     confidence = 'medium'
-    #                     market_adjustment = "（财报季临近，波动可能加大，建议适当控制仓位）"
-    #
-    #         elif market_type == 'HK':
-    #             # 港股调整因素
-    #             mainland_sentiment = self._get_mainland_market_sentiment()
-    #             if mainland_sentiment < -0.3 and (action == 'buy' or action == 'strong_buy'):
-    #                 action = 'cautious_buy'
-    #                 confidence = 'medium'
-    #                 market_adjustment = "（受大陆市场情绪影响，建议控制风险）"
-    #
-    #         elif market_type == 'A':
-    #             # A股特有调整因素
-    #             if technical_data and 'Volatility' in technical_data:
-    #                 vol = technical_data.get('Volatility', 0)
-    #                 if vol > 4.0 and (action == 'buy' or action == 'strong_buy'):
-    #                     action = 'cautious_buy'
-    #                     confidence = 'medium'
-    #                     market_adjustment = "（市场波动较大，建议分批买入）"
-    #
-    #         # 3. 考虑市场情绪
-    #         sentiment_adjustment = ""
-    #         if news_data and 'market_sentiment' in news_data:
-    #             sentiment = news_data.get('market_sentiment', 'neutral')
-    #
-    #             if sentiment == 'bullish' and action in ['hold', 'cautious_hold']:
-    #                 action = 'cautious_buy'
-    #                 sentiment_adjustment = "（市场氛围积极，可适当提高仓位）"
-    #
-    #             elif sentiment == 'bearish' and action in ['buy', 'cautious_buy']:
-    #                 action = 'hold'
-    #                 sentiment_adjustment = "（市场氛围悲观，建议等待更好买点）"
-    #
-    #         # 4. 技术指标微调
-    #         technical_adjustment = ""
-    #         if technical_data:
-    #             rsi = technical_data.get('RSI', 50)
-    #             macd_signal = technical_data.get('MACD_signal', 'neutral')
-    #
-    #             # RSI超买超卖调整
-    #             if rsi > 80 and action in ['buy', 'strong_buy']:
-    #                 action = 'hold'
-    #                 technical_adjustment = "（RSI指标显示超买，建议等待回调）"
-    #             elif rsi < 20 and action in ['sell', 'reduce']:
-    #                 action = 'hold'
-    #                 technical_adjustment = "（RSI指标显示超卖，可能存在反弹机会）"
-    #
-    #             # MACD信号调整
-    #             if macd_signal == 'bullish' and action in ['hold', 'cautious_hold']:
-    #                 action = 'cautious_buy'
-    #                 if not technical_adjustment:
-    #                     technical_adjustment = "（MACD显示买入信号）"
-    #             elif macd_signal == 'bearish' and action in ['cautious_buy', 'buy']:
-    #                 action = 'hold'
-    #                 if not technical_adjustment:
-    #                     technical_adjustment = "（MACD显示卖出信号）"
-    #
-    #         # 5. 根据调整后的action转换为最终建议
-    #         action_to_recommendation = {
-    #             'strong_buy': '强烈建议买入',
-    #             'buy': '建议买入',
-    #             'cautious_buy': '谨慎买入',
-    #             'hold': '持观望态度',
-    #             'cautious_hold': '谨慎持有',
-    #             'reduce': '建议减仓',
-    #             'sell': '建议卖出'
-    #         }
-    #
-    #         final_recommendation = action_to_recommendation.get(action, base_recommendation)
-    #
-    #         # 6. 组合所有调整因素
-    #         adjustments = " ".join(filter(None, [market_adjustment, sentiment_adjustment, technical_adjustment]))
-    #
-    #         if adjustments:
-    #             return f"{final_recommendation} {adjustments}"
-    #         else:
-    #             return final_recommendation
-    #
-    #     except Exception as e:
-    #         self.logger.error(f"生成投资建议时出错: {str(e)}")
-    #         # 出错时返回安全的默认建议
-    #         return "无法提供明确建议，请结合多种因素谨慎决策"
-
-    # 原有API：使用 OpenAI 替代 Gemini
-    # def get_ai_analysis(self, df, stock_code):
-    #     """使用AI进行分析"""
-    #     try:
-    #         import openai
-    #         import threading
-    #         import queue
-
-    #         # 设置API密钥和基础URL
-    #         openai.api_key = self.openai_api_key
-    #         openai.api_base = self.openai_api_url
-
-    #         recent_data = df.tail(14).to_dict('records')
-    #         technical_summary = {
-    #             'trend': 'upward' if df.iloc[-1]['MA5'] > df.iloc[-1]['MA20'] else 'downward',
-    #             'volatility': f"{df.iloc[-1]['Volatility']:.2f}%",
-    #             'volume_trend': 'increasing' if df.iloc[-1]['Volume_Ratio'] > 1 else 'decreasing',
-    #             'rsi_level': df.iloc[-1]['RSI']
-    #         }
-
-    #         prompt = f"""分析股票{stock_code}：
-    # 技术指标概要：{technical_summary}
-    # 近14日交易数据：{recent_data}
-
-    # 请提供：
-    # 1.趋势分析（包含支撑位和压力位）
-    # 2.成交量分析及其含义
-    # 3.风险评估（包含波动率分析）
-    # 4.短期和中期目标价位
-    # 5.关键技术位分析
-    # 6.具体交易建议（包含止损位）
-
-    # 请基于技术指标和市场动态进行分析,给出具体数据支持。"""
-
-    #         messages = [{"role": "user", "content": prompt}]
-
-    #         # 使用线程和队列添加超时控制
-    #         result_queue = queue.Queue()
-
-    #         def call_api():
-    #             try:
-    #                 response = openai.ChatCompletion.create(
-    #                     model=self.openai_model,
-    #                     messages=messages,
-    #                     temperature=1,
-    #                     max_tokens=4000,
-    #                     stream = False
-    #                 )
-    #                 result_queue.put(response)
-    #             except Exception as e:
-    #                 result_queue.put(e)
-
-    #         # 启动API调用线程
-    #         api_thread = threading.Thread(target=call_api)
-    #         api_thread.daemon = True
-    #         api_thread.start()
-
-    #         # 等待结果，最多等待20秒
-    #         try:
-    #             result = result_queue.get(timeout=20)
-
-    #             # 检查结果是否为异常
-    #             if isinstance(result, Exception):
-    #                 raise result
-
-    #             # 提取助理回复
-    #             assistant_reply = result["choices"][0]["message"]["content"].strip()
-    #             return assistant_reply
-
-    #         except queue.Empty:
-    #             return "AI分析超时，无法获取分析结果。请稍后再试。"
-    #         except Exception as e:
-    #             return f"AI分析过程中发生错误: {str(e)}"
-
-    #     except Exception as e:
-    #         self.logger.error(f"AI分析发生错误: {str(e)}")
-    #         return "AI分析过程中发生错误，请稍后再试"
 
     def get_ai_analysis(self, df, stock_code, market_type='A'):
         """

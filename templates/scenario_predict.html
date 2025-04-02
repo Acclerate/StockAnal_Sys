@@ -215,28 +215,89 @@
     }
 
     function renderScenarioPrediction(data, stockCode) {
-        // 设置乐观情景数据
-        $('#optimistic-price').text('¥' + formatNumber(data.optimistic.target_price, 2));
-        $('#optimistic-change').text(formatPercent(data.optimistic.change_percent, 2));
-        $('#optimistic-analysis').text(data.optimistic_analysis || '暂无分析');
+    // 设置乐观情景数据
+    $('#optimistic-price').text('¥' + formatNumber(data.optimistic.target_price, 2));
+    $('#optimistic-change').text(formatPercent(data.optimistic.change_percent, 2));
+    $('#optimistic-analysis').text(data.optimistic_analysis || '暂无分析');
 
-        // 设置中性情景数据
-        $('#neutral-price').text('¥' + formatNumber(data.neutral.target_price, 2));
-        $('#neutral-change').text(formatPercent(data.neutral.change_percent, 2));
-        $('#neutral-analysis').text(data.neutral_analysis || '暂无分析');
+    // 设置中性情景数据
+    $('#neutral-price').text('¥' + formatNumber(data.neutral.target_price, 2));
+    $('#neutral-change').text(formatPercent(data.neutral.change_percent, 2));
+    $('#neutral-analysis').text(data.neutral_analysis || '暂无分析');
 
-        // 设置悲观情景数据
-        $('#pessimistic-price').text('¥' + formatNumber(data.pessimistic.target_price, 2));
-        $('#pessimistic-change').text(formatPercent(data.pessimistic.change_percent, 2));
-        $('#pessimistic-analysis').text(data.pessimistic_analysis || '暂无分析');
+    // 设置悲观情景数据
+    $('#pessimistic-price').text('¥' + formatNumber(data.pessimistic.target_price, 2));
+    $('#pessimistic-change').text(formatPercent(data.pessimistic.change_percent, 2));
+    $('#pessimistic-analysis').text(data.pessimistic_analysis || '暂无分析');
 
-        // 设置风险与机会因素
-        setDefaultRiskOpportunityFactors();
-
-        // 渲染价格预测图表
-        renderPricePredictionChart(data);
+    // 设置风险与机会因素 - 使用API返回的数据
+    if (data.risk_factors && Array.isArray(data.risk_factors)) {
+        // 使用API返回的风险因素
+        $('#risk-factors').html('');
+        data.risk_factors.forEach(factor => {
+            $('#risk-factors').append(`<li>${factor}</li>`);
+        });
+    } else {
+        // 如果API没有返回风险因素，使用默认值
+        setDefaultRiskFactors();
     }
 
+    if (data.opportunity_factors && Array.isArray(data.opportunity_factors)) {
+        // 使用API返回的机会因素
+        $('#opportunity-factors').html('');
+        data.opportunity_factors.forEach(factor => {
+            $('#opportunity-factors').append(`<li>${factor}</li>`);
+        });
+    } else {
+        // 如果API没有返回机会因素，使用默认值
+        setDefaultOpportunityFactors();
+    }
+
+    // 渲染价格预测图表
+    renderPricePredictionChart(data);
+}
+
+    // 将原来的 setDefaultRiskOpportunityFactors 函数拆分为两个函数
+    function setDefaultRiskFactors() {
+        // 示例风险因素
+        const riskFactors = [
+            '宏观经济下行压力增大',
+            '行业政策收紧可能性',
+            '原材料价格上涨',
+            '市场竞争加剧',
+            '技术迭代风险'
+        ];
+
+        // 填充HTML
+        $('#risk-factors').html('');
+        riskFactors.forEach(factor => {
+            $('#risk-factors').append(`<li>${factor}</li>`);
+        });
+    }
+
+    function setDefaultOpportunityFactors() {
+        // 示例有利因素
+        const opportunityFactors = [
+            '行业景气度持续向好',
+            '公司新产品上市',
+            '成本控制措施见效',
+            '产能扩张计划',
+            '国际市场开拓机会'
+        ];
+
+        // 填充HTML
+        $('#opportunity-factors').html('');
+        opportunityFactors.forEach(factor => {
+            $('#opportunity-factors').append(`<li>${factor}</li>`);
+        });
+    }
+
+    // 保留原函数，但内部调用新的拆分函数
+    function setDefaultRiskOpportunityFactors() {
+        setDefaultRiskFactors();
+        setDefaultOpportunityFactors();
+    }
+    
     function setDefaultRiskOpportunityFactors() {
         // 示例风险因素
         const riskFactors = [
