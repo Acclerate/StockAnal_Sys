@@ -11,6 +11,8 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from cachetools import cached, TTLCache
+
+
 # 配置日志系统
 def setup_logging():
     """初始化日志配置"""
@@ -40,6 +42,7 @@ def setup_logging():
 
     return log_filename
 
+
 # 初始化日志并获取日志路径
 log_file_path = setup_logging()
 
@@ -49,7 +52,7 @@ stock_cache = TTLCache(maxsize=256, ttl=CACHE_TTL)
 
 # 在常量配置区域添加
 WMICON_NOTIFY = 0x00000010  # 通知图标标志
-NIIF_INFO = 0x00000001      # 信息类型图标
+NIIF_INFO = 0x00000001  # 信息类型图标
 # 在常量配置区域添加交易时间配置（约第30行后）
 TRADING_HOURS = {
     "morning_open": (9, 30),
@@ -57,6 +60,7 @@ TRADING_HOURS = {
     "afternoon_open": (13, 0),
     "afternoon_close": (15, 0)
 }
+
 
 def is_trading_time() -> bool:
     """判断当前是否处于A股交易时间"""
@@ -106,6 +110,8 @@ def get_next_check_interval() -> float:
         next_check = (afternoon_open[0] - now.tm_hour) * 3600 + (afternoon_open[1] - now.tm_min) * 60
 
     return max(60, next_check)  # 至少等待1分钟
+
+
 # 添加通知函数
 def show_windows_notification(title: str, msg: str):
     """显示Windows通知"""
@@ -113,6 +119,7 @@ def show_windows_notification(title: str, msg: str):
         ctypes.windll.user32.MessageBoxW(0, msg, title, 0x40)  # 0x40是信息图标
     except Exception as e:
         logging.error(f"通知发送失败: {str(e)}")
+
 
 # 修改日志格式配置（增加毫秒显示）
 logging.basicConfig(
@@ -177,21 +184,37 @@ def format_stock_code(stock_code: str) -> Tuple[str, MarketType]:
     return code, MarketType.A_SHANGHAI
 
 
+import time
+
+
 @cached(stock_cache)
 def get_cached_stock_data(market: MarketType) -> pd.DataFrame:
-    """带市场区分的缓存数据获取"""
+    """根据市场获取股票数据，仅交易时间刷新缓存；避免频繁请求 AkShare 接口"""
+    cache_key = f"market:{market.value}"
+
+    # 非交易时段，直接用缓存
+    if not is_trading_time() and cache_key in stock_cache:
+        return stock_cache[cache_key]
+
     try:
-        # 获取全市场A股数据
+        # 增加短延迟，防止 AkShare 频繁调用导致封 IP
+        time.sleep(1)  # 可改为 0.5 或其他安全延迟
         df = ak.stock_zh_a_spot_em()
-        # 根据市场筛选数据
+
         if market == MarketType.A_SHANGHAI:
-            return df[df['代码'].str.startswith(('6', '5', '9'))]
+            filtered_df = df[df['代码'].str.startswith(('6', '5', '9'))]
         elif market == MarketType.A_SHENZHEN:
-            return df[df['代码'].str.startswith(('0', '3'))]
-        return pd.DataFrame()
+            filtered_df = df[df['代码'].str.startswith(('0', '3'))]
+        else:
+            filtered_df = pd.DataFrame()
+
+        # 缓存更新
+        stock_cache[cache_key] = filtered_df
+        return filtered_df
+
     except Exception as e:
         logging.error(f"Akshare数据获取失败: {str(e)}", exc_info=True)
-        return pd.DataFrame()
+        return stock_cache.get(cache_key, pd.DataFrame())
 
 
 def get_stock_realtime_price(stock_code: str) -> Optional[Dict]:
@@ -272,7 +295,7 @@ def parse_eastmoney_data(data: Dict, code: str, market: MarketType) -> Optional[
             "名称": item.get("f58", code),
             "当前价": round(item.get("f43", 0), 2),
             "涨跌幅(%)": round(item.get("f170", 0), 2),
-            "成交量(手)": int(item.get("f47", 0)),
+            "成交量(手)": format_volume(int(item.get("f47", 0))),
             "市场类型": market.value,
             "数据源": "备用API"
         }
@@ -292,18 +315,38 @@ def get_stock_price(stock_code: str) -> Optional[Dict]:
     return None
 
 
+def format_volume(volume) -> str:
+    try:
+        volume = float(volume)
+    except (ValueError, TypeError):
+        return str(volume)
+
+    if volume >= 10_000_000:
+        return f"{volume / 10_000_000:.2f}千万手"
+    elif volume >= 10_000:
+        return f"{volume / 10_000:.2f}万手"
+    else:
+        return f"{volume:.0f}手"
+
+
 if __name__ == "__main__":
     logging.info(f"程序启动，日志文件路径：{os.path.abspath(log_file_path)}")
     test_cases = [
-        "002261",  # 拓维信息
-        "000977",  # 浪潮信息
-        "600588",  # 用友网络
-        "002747",  # 用友网络
-        "603881",  # 用友网络
-        "513180",  # 恒生科技指数ETF
-        "002352",  # 顺丰控股
-        "600589"  # 大位科技
+        # "002261",
+        # "000977",  # 浪潮信息
+        # "600588",  # 用友网络
+        # "002747",  # 用友网络
+        # "603881",  # 用友网络
+        # "513180",  # 恒生科技指数ETF
+        # "513160",  # 恒生科技指数ETF
+        # "513060",  # 恒生科技指数ETF
+        # "002352",  # 顺丰控股
+        # "600589"  # 大位科技
         # "600597"  # 光明乳业
+        #  "000039", #中集集团
+        #  "002255", #海陆重工
+        #  "002537" #海联金汇
+        "002361"
     ]
 
     while True:
@@ -324,25 +367,30 @@ if __name__ == "__main__":
             result = get_stock_price(code)
             elapsed = time.time() - start_time
             if result:
+                # print(result)
                 current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+                volume_str = format_volume(result['成交量(手)'])
                 logging.info(f"[{current_time}] [{elapsed:.2f}s] {result['名称']}({result['代码']}) "
-                             f"当前价: {result['当前价']} | 涨跌幅: {result['涨跌幅(%)']}% "
+                             f"当前价: {result['当前价']} | 涨跌幅: {result['涨跌幅(%)']}% | 成交量: {volume_str} "
                              f"| 市场: {result['市场类型']}")
+
 
 
             else:
                 logging.info(f"[{elapsed:.2f}s] 股票 {code} 数据获取失败")
 
             # 添加特化价格提醒
-            if result['代码'] == '600133' and float(result['当前价']) >= 10.9:
+            if float(result['当前价']) <= 6.1:
                 show_windows_notification(
                     "价格提醒",
-                    f"{result['名称']}({result['代码']}) 已达目标价\n当前价: {result['当前价']}\n" +
-                    f"预设阈值: 10.9 | 涨跌幅: {result['涨跌幅(%)']}%"
+                    f"{result['名称']}({result['代码']}) 已达目标价\n"
+                    f"当前价: {result['当前价']}\n"
+                    f"预设阈值: 10.9 | 涨跌幅: {result['涨跌幅(%)']}%\n"
+                    f"成交量: {volume_str}"
                 )
             time.sleep(0.5)  # 保持原有防刷间隔
 
         # 精确3分钟间隔控制
         elapsed = time.time() - cycle_start
-        if elapsed < 180:
-            time.sleep(180 - elapsed)
+        if elapsed < 60:
+            time.sleep(60 - elapsed)

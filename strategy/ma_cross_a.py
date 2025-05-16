@@ -109,13 +109,10 @@ if __name__ == "__main__":
     # start = datetime(2024, 3, 1)
     # end = datetime(2025, 3, 23)
 
-    start = datetime(2023, 4, 1)
-    end = datetime(2025, 4, 21)
+    start = datetime(2023, 3, 1)
+    end = datetime(2025, 4, 20)
     # code ="002261"  # 拓维信息
-    # code ="002583"  # 海能达
-    # code ="601086"  # 国芳集团
-    # code ="600859" # 王府井
-    code ="002255" #海陆重工
+    code ="600685" # 王府井
     dataframe = get_data(code, start=start.strftime('%Y-%m-%d'), end=end.strftime('%Y-%m-%d'))
     data = bt.feeds.PandasData(dataname=dataframe, fromdate=start, todate=end)
 
