@@ -329,9 +329,53 @@ def format_volume(volume) -> str:
         return f"{volume:.0f}手"
 
 
+def trigger_price_alert(result: Dict) -> None:
+    stock_code = result['代码']
+    config = PRICE_ALERT_THRESHOLDS.get(stock_code)
+    if not config:
+        return
+
+    current_price = float(result['当前价'])
+    threshold = config['threshold']
+    operator = config['comp']
+
+    # 检查价格是否达到阈值条件
+    if (
+            (operator == '>' and current_price > threshold) or
+            (operator == '<' and current_price < threshold) or
+            (operator == '>=' and current_price >= threshold) or
+            (operator == '<=' and current_price <= threshold) or
+            (operator == '==' and current_price == threshold)
+    ):
+        # 格式化提醒信息
+        alert_message = (
+            f"{result['名称']}({stock_code}) 价格提醒\n"
+            f"当前: {current_price} | 目标: {operator} {threshold}\n"
+            f"涨跌幅: {result['涨跌幅(%)']}% | 成交量: {format_volume(result['成交量(手)'])}"
+        )
+
+        # 显示Windows通知
+        show_windows_notification(
+            title=f"{result['名称']} 价格异动",
+            msg=alert_message
+        )
+
+
+PRICE_ALERT_THRESHOLDS = {
+    '002145': {'threshold': 4.9, 'comp': '>='},  # 中核钛白
+    '000421': {'threshold': 6.3, 'comp': '<='},  # 南京公用
+    '002361': {'threshold': 6.2, 'comp': '<='},  # 神剑股份
+    '002097': {'threshold': 7.2, 'comp': '<='},  # 山河智能
+    '002400': {'threshold': 7.5, 'comp': '<='}  # 省广集团
+}
 if __name__ == "__main__":
     logging.info(f"程序启动，日志文件路径：{os.path.abspath(log_file_path)}")
     test_cases = [
+        "002145",  # 中核钛白
+        "000421",  # 南京公用
+        "002361",  # 神剑股份
+        "002097",  # 山河智能
+        "002400"  # 省广集团
         # "002261",
         # "000977",  # 浪潮信息
         # "600588",  # 用友网络
@@ -340,13 +384,13 @@ if __name__ == "__main__":
         # "513180",  # 恒生科技指数ETF
         # "513160",  # 恒生科技指数ETF
         # "513060",  # 恒生科技指数ETF
+        # "513050",  # 恒生科技指数ETF
         # "002352",  # 顺丰控股
         # "600589"  # 大位科技
         # "600597"  # 光明乳业
         #  "000039", #中集集团
         #  "002255", #海陆重工
         #  "002537" #海联金汇
-        "002361"
     ]
 
     while True:
@@ -373,21 +417,10 @@ if __name__ == "__main__":
                 logging.info(f"[{current_time}] [{elapsed:.2f}s] {result['名称']}({result['代码']}) "
                              f"当前价: {result['当前价']} | 涨跌幅: {result['涨跌幅(%)']}% | 成交量: {volume_str} "
                              f"| 市场: {result['市场类型']}")
-
-
-
+                trigger_price_alert(result)
             else:
                 logging.info(f"[{elapsed:.2f}s] 股票 {code} 数据获取失败")
 
-            # 添加特化价格提醒
-            if float(result['当前价']) <= 6.1:
-                show_windows_notification(
-                    "价格提醒",
-                    f"{result['名称']}({result['代码']}) 已达目标价\n"
-                    f"当前价: {result['当前价']}\n"
-                    f"预设阈值: 10.9 | 涨跌幅: {result['涨跌幅(%)']}%\n"
-                    f"成交量: {volume_str}"
-                )
             time.sleep(0.5)  # 保持原有防刷间隔
 
         # 精确3分钟间隔控制
